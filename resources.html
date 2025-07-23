@@ -10,138 +10,203 @@
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <style>
     .hero {
-        text-align: center;
-        padding: 4rem 1rem 2rem;
-        background-color: #004080;
-        color: white;
-    }
+    text-align: center;
+    padding: 4rem 1rem 2rem;
+    background-color: #004080;
+    color: white;
+}
 
+.hero-title {
+    font-size: 2.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.gradient-text {
+    background: linear-gradient(to right, #00b4db, #0083b0);
+    -webkit-background-clip: text; /* fixed typo */
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto;
+    opacity: 0.9;
+    line-height: 1.5;
+}
+
+.filters {
+    text-align: center;
+    margin: 2rem 0 3rem;
+}
+
+.filter-btn {
+    background-color: #f0f0f0;
+    border: none;
+    padding: 0.6rem 1.5rem;
+    margin: 0.3rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #333;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background-color: #004080;
+    color: white;
+}
+
+.resource-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    padding: 0 1rem;
+}
+
+.article-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.07);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.article-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+
+.article-image-container {
+    position: relative;
+    height: 180px;
+    overflow: hidden;
+    border-bottom: 1px solid #eee;
+}
+
+.article-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.article-card:hover .article-image-container img {
+    transform: scale(1.05);
+}
+
+.category-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background-color: #0083b0;
+    color: white;
+    padding: 0.4rem 0.9rem;
+    font-size: 0.75rem;
+    border-radius: 20px;
+    font-weight: 600;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    text-transform: uppercase;
+    user-select: none;
+}
+
+/* Optional: Different badge colors per category (if needed) */
+/* 
+.article-card[data-category="webdev"] .category-badge {
+    background-color: #4a90e2;
+}
+.article-card[data-category="ai"] .category-badge {
+    background-color: #f5a623;
+}
+.article-card[data-category="design"] .category-badge {
+    background-color: #7b61ff;
+}
+*/
+
+.article-content {
+    padding: 1.25rem 1.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.article-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0 0 0.75rem;
+    color: #222;
+}
+
+.article-excerpt {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: #555;
+    line-height: 1.5;
+    flex-grow: 1;
+}
+
+.article-tags {
+    margin-bottom: 1.25rem;
+}
+
+.article-tags .tag {
+    background-color: #e1ecf4;
+    color: #0366d6;
+    padding: 0.35rem 0.8rem;
+    font-size: 0.85rem;
+    margin-right: 0.4rem;
+    border-radius: 20px;
+    display: inline-block;
+    font-weight: 600;
+    user-select: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.article-tags .tag:hover {
+    background-color: #0366d6;
+    color: white;
+    cursor: default;
+}
+
+.btn-outline.small {
+    background-color: transparent;
+    border: 2px solid #0083b0;
+    padding: 0.5rem 1.2rem;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    color: #0083b0;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-block;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-outline.small:hover {
+    background-color: #0083b0;
+    color: white;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
     .hero-title {
-        font-size: 2.5rem;
-        margin-bottom: 0.5rem;
+        font-size: 2rem;
     }
-
-    .gradient-text {
-        background: linear-gradient(to right, #00b4db, #0083b0);
-        --webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-
-    .hero-subtitle {
-        font-size: 1.2rem;
-        max-width: 700px;
-        margin: 0 auto;
-        opacity: 0.9;
-    }
-
-    .filters {
-        text-align: center;
-        margin: 2rem 0;
-    }
-
-    .filter-btn {
-        background-color: #f0f0f0;
-        border: none;
-        padding: 0.6rem 1.2rem;
-        margin: 0.3rem;
-        border-radius: 20px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-
-    .filter-btn:hover,
-    .filter-btn.active {
-        background-color: #004080;
-        color: white;
-    }
-
     .resource-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 2rem;
+        grid-template-columns: 1fr;
+        padding: 0 0.5rem;
     }
-
-    .article-card {
-        background: white;
-        border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        overflow: hidden;
-        transition: transform 0.3s ease;
-    }
-
-    .article-card:hover {
-        transform: translateY(-5px);
-    }
-
     .article-image-container {
-        position: relative;
-        height: 180px;
-        overflow: hidden;
+        height: 160px;
     }
+}
 
-    .article-image-container img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    .category-badge {
-        position: absolute;
-        top: 10px;
-        left: 10px;
-        background-color: #0083b0;
-        color: white;
-        padding: 0.3rem 0.6rem;
-        font-size: 0.75rem;
-        border-radius: 4px;
-    }
-
-    .article-content {
-        padding: 1rem;
-    }
-
-    .article-title {
-        font-size: 1.2rem;
-        font-weight: 600;
-        margin: 0 0 0.5rem;
-    }
-
-    .article-excerpt {
-        font-size: 0.95rem;
-        margin-bottom: 1rem;
-        color: #555;
-    }
-
-    .article-tags {
-        margin-bottom: 1rem;
-    }
-
-    .article-tags .tag {
-        background-color: #e1ecf4;
-        color: #0366d6;
-        padding: 0.3rem 0.6rem;
-        font-size: 0.8rem;
-        margin-right: 0.3rem;
-        border-radius: 20px;
-        display: inline-block;
-    }
-
-
-    .btn-outline.small {
-        background-color: transparent;
-        border: 1px solid #0083b0;
-        padding: 0.4rem 0.9rem;
-        font-size: 0.8rem;
-        border-radius: 5px;
-        color: #0083b0;
-        text-decoration: none;
-        transition: 0.3s;
-    }
-
-    .btn-outline.small:hover {
-        background-color: #0083b0;
-        color: white;
-    }
+    
 
     </style>
 </head>
