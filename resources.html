@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - ZURI Innovation Club</title>
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+    .hero {
+        text-align: center;
+        padding: 4rem 1rem 2rem;
+        background-color: #004080;
+        color: white;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .gradient-text {
+        background: linear-gradient(to right, #00b4db, #0083b0);
+        --webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem;
+        max-width: 700px;
+        margin: 0 auto;
+        opacity: 0.9;
+    }
+
+    .filters {
+        text-align: center;
+        margin: 2rem 0;
+    }
+
+    .filter-btn {
+        background-color: #f0f0f0;
+        border: none;
+        padding: 0.6rem 1.2rem;
+        margin: 0.3rem;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+        background-color: #004080;
+        color: white;
+    }
+
+    .resource-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+    }
+
+    .article-card {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        overflow: hidden;
+        transition: transform 0.3s ease;
+    }
+
+    .article-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .article-image-container {
+        position: relative;
+        height: 180px;
+        overflow: hidden;
+    }
+
+    .article-image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .category-badge {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background-color: #0083b0;
+        color: white;
+        padding: 0.3rem 0.6rem;
+        font-size: 0.75rem;
+        border-radius: 4px;
+    }
+
+    .article-content {
+        padding: 1rem;
+    }
+
+    .article-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin: 0 0 0.5rem;
+    }
+
+    .article-excerpt {
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+        color: #555;
+    }
+
+    .article-tags {
+        margin-bottom: 1rem;
+    }
+
+    .article-tags .tag {
+        background-color: #e1ecf4;
+        color: #0366d6;
+        padding: 0.3rem 0.6rem;
+        font-size: 0.8rem;
+        margin-right: 0.3rem;
+        border-radius: 20px;
+        display: inline-block;
+    }
+
+
+    .btn-outline.small {
+        background-color: transparent;
+        border: 1px solid #0083b0;
+        padding: 0.4rem 0.9rem;
+        font-size: 0.8rem;
+        border-radius: 5px;
+        color: #0083b0;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+
+    .btn-outline.small:hover {
+        background-color: #0083b0;
+        color: white;
+    }
+
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">
+                        <img src="img/zuri_logo.png" alt="logo">
+                    </div>
+                    <div class="logo-text">
+                        <h1>ZURI</h1>
+                    </div>
+                </a>
+
+                <nav class="nav-desktop">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="programs.html" class="nav-link">Programs</a>
+                    <a href="projects.html" class="nav-link">Projects</a>
+                    <a href="events.html" class="nav-link">Events</a>
+                    <a href="resources.html" class="nav-link">Resources</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </nav>
+
+                <div class="cta-desktop">
+                    <a href="join.html" class="btn btn-hero btn-lg">Join ZURI</a>
+                </div>
+
+            </div>
+        </div>
+    </header>
+        <main>
+        <section class="hero">
+            <div class="container">
+                <h1 class="hero-title">
+                    Learning <span class="gradient-text">Resources</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Access curated guides, tutorials, documentation, and toolkits to support your innovation journey.
+                </p>
+            </div>
+        </section>
+
+        <section class="filter-bar container">
+            <input type="text" id="searchInput" placeholder="Search resources..." class="search-input" />
+            <div class="filters">
+                <button class="filter-btn" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="webdev">Web Dev</button>
+                <button class="filter-btn" data-filter="ai">AI</button>
+                <button class="filter-btn" data-filter="design">Design</button>
+                <button class="filter-btn" data-filter="research">Research</button>
+            </div>
+        </section>
+
+        <section class="articles container">
+            <article class="article-card" data-category="webdev">
+                <div class="article-image-container">
+                    <img src="https://images.unsplash.com/photo-1581091012184-5c8e4f12f745?w=400&h=250&fit=crop" alt="HTML Basics">
+                    <div class="category-badge">Web Dev</div>
+                </div>
+                <div class="article-content">
+                    <h3 class="article-title">Getting Started with HTML & CSS</h3>
+                    <p class="article-excerpt">
+                        A beginner-friendly guide to building your first website using HTML and CSS.
+                    </p>
+                    <div class="article-tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">Frontend</span>
+                    </div>
+                    <div class="article-footer">
+                        <a href="https://developer.mozilla.org/en-US/docs/Learn" class="btn btn-outline small" target="_blank">Open Resource</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="article-card" data-category="ai">
+                <div class="article-image-container">
+                    <img src="https://images.unsplash.com/photo-1603791440384-56cd371ee9a7?w=400&h=250&fit=crop" alt="AI Learning">
+                    <div class="category-badge">AI</div>
+                </div>
+                <div class="article-content">
+                    <h3 class="article-title">Introduction to AI and Machine Learning</h3>
+                    <p class="article-excerpt">
+                        Learn the fundamentals of artificial intelligence, including machine learning basics.
+                    </p>
+                    <div class="article-tags">
+                        <span class="tag">AI</span>
+                        <span class="tag">ML</span>
+                        <span class="tag">Data</span>
+                    </div>
+                    <div class="article-footer">
+                        <a href="https://www.coursera.org/learn/machine-learning" class="btn btn-outline small" target="_blank">Open Resource</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="article-card" data-category="design">
+                <div class="article-image-container">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=250&fit=crop" alt="UI Design">
+                    <div class="category-badge">Design</div>
+                </div>
+                <div class="article-content">
+                    <h3 class="article-title">UI/UX Design Principles</h3>
+                    <p class="article-excerpt">
+                        Understand the core principles of good UI/UX design with examples and case studies.
+                    </p>
+                    <div class="article-tags">
+                        <span class="tag">UI</span>
+                        <span class="tag">UX</span>
+                        <span class="tag">Figma</span>
+                    </div>
+                    <div class="article-footer">
+                        <a href="https://uxdesign.cc" class="btn btn-outline small" target="_blank">Open Resource</a>
+                    </div>
+                </div>
+            </article>
+        </section>
+    </main>
+
+
+    
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section footer-main">
+                    <a href="index.html" class="footer-logo">
+                        <div class="logo-icon">
+                            <i data-lucide="lightbulb"></i>
+                        </div>
+                        <div class="logo-text">
+                            <h2>ZURI</h2>
+                            <p>Innovation Club</p>
+                        </div>
+                    </a>
+                    <p class="footer-description">
+                        Zetech University Research and Innovation Club - Empowering students to 
+                        innovate, collaborate, and transform ideas into impactful solutions.
+                    </p>
+                    <p class="footer-tagline">
+                        "Innovate. Collaborate. Transform."
+                    </p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="programs.html">Programs</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="join.html">Join Club</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <ul class="contact-list">
+                        <li>
+                            <i data-lucide="map-pin"></i>
+                            <span>Zetech University<br>Ruiru, Kenya</span>
+                        </li>
+                        <li>
+                            <i data-lucide="mail"></i>
+                            <span>zuri@zetech.ac.ke</span>
+                        </li>
+                        <li>
+                            <i data-lucide="phone"></i>
+                            <span>+254 123 456 789</span>
+                        </li>
+                    </ul>
+
+                    <div class="social-media">
+                        <h4>Follow Us</h4>
+                        <div class="social-links">
+                            <a href="#" class="social-link">
+                                <i data-lucide="facebook"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i data-lucide="linkedin"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i data-lucide="instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2024 ZURI - Zetech University Research and Innovation Club. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Join ZURI Club</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .join_container {
+  max-width: 600px;
+  margin: 80px auto;
+  background-color: white;
+  padding: 40px 30px;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  color: #003366;
+  text-align: center;
+}
+
+p {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #444;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+input {
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+button {
+  background-color: darkgreen;
+  color: white;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  width: 100px;
+}
+
+button:hover {
+  background-color: lightgreen;
+}
+
+  </style>
+</head>
+<body>
+      <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">
+                        <img src="img/zuri_logo.png" alt="logo">
+                    </div>
+                    <div class="logo-text">
+                        <h1>ZURI</h1>
+                    </div>
+                </a>
+
+                <nav class="nav-desktop">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="programs.html" class="nav-link">Programs</a>
+                    <a href="projects.html" class="nav-link">Projects</a>
+                    <a href="events.html" class="nav-link">Events</a>
+                    <a href="resources.html" class="nav-link">Resources</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </nav>
+
+                <div class="cta-desktop">
+                    <a href="join.html" class="btn btn-hero btn-lg">Join ZURI</a>
+                </div>
+
+            </div>
+        </div>
+    </header>
+  <div class="join_container">
+    <h1>Join ZURI Club</h1>
+    <p>Fill in your details below to become a member of the Zetech University Research and Innovation (ZURI) Club.</p>
+
+    <form action="success.html" method="POST" id="joinForm">
+      <label for="name">Full Names:</label>
+      <input type="text" id="name" name="name" required />
+
+      <label for="course">Course:</label>
+      <input type="text" id="course" name="course" required />
+
+      <label for="adm">Admission Number:</label>
+      <input type="text" id="adm" name="adm" required />
+
+      <label for="phone">Phone Number:</label>
+      <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}" />
+
+      <label for="email">Email Address:</label>
+      <input type="email" id="email" name="email" required />
+
+      <button type="submit">Join Now</button>
+      <p id="errorMsg" style="color:red; display:none;">Please fill all fields correctly.</p>
+    </form>
+  </div>
+  <script defer src="validate.js"></script>
+</body>
+</html>

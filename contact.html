@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - ZURI Innovation Club</title>
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+        .chatbox {
+        background-color: #fff;
+        width: 560px;
+        height: 435px;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        }
+
+        .chat-header {
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+        color: #007bff;
+        margin-bottom: 8px;
+        }
+
+        #messages {
+        flex: 1;
+        overflow-y: auto;
+        margin-bottom: 10px;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        border-top: 1px solid #eee;
+        border-bottom: 1px solid #eee;
+        }
+
+        .message {
+        margin: 6px 0;
+        padding: 10px 15px;
+        border-radius: 20px;
+        max-width: 75%;
+        line-height: 1.4;
+        word-wrap: break-word;
+        }
+
+        .user {
+        background-color: #cce5ff;
+        align-self: flex-end;
+        text-align: right;
+        }
+
+        .bot {
+        background-color: #d4edda;
+        align-self: flex-start;
+        text-align: left;
+        }
+
+        .suggestions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 10px;
+        }
+
+        .suggestions button {
+        background-color: #0083b0;
+        color: blue;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 15px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: background-color 0.3s;
+        }
+
+        .suggestions button:hover {
+        background-color: #005f73;
+        }
+
+        .input-area {
+        display: flex;
+        gap: 5px;
+        }
+
+        input[type="text"] {
+        flex: 1;
+        padding: 10px;
+        border-radius: 20px;
+        border: 1px solid blue;
+        outline: none;
+        }
+
+        button {
+        padding: 10px 15px;
+        border-radius: 20px;
+        border: none;
+        background-color: #007bff;
+        color: white;
+        cursor: pointer;
+        }
+
+        button:hover {
+        background-color: #0056b3;
+        }
+
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">
+                        <img src="img/zuri_logo.png" alt="logo">
+                    </div>
+                    <div class="logo-text">
+                        <h1>ZURI</h1>
+                    </div>
+                </a>
+
+                <nav class="nav-desktop">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="programs.html" class="nav-link">Programs</a>
+                    <a href="projects.html" class="nav-link">Projects</a>
+                    <a href="events.html" class="nav-link">Events</a>
+                    <a href="resources.html" class="nav-link">Resources</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </nav>
+
+                <div class="cta-desktop">
+                    <a href="join.html" class="btn btn-hero btn-lg">Join ZURI</a>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <main style="min-height: 100vh; padding: 5rem 0;">
+        <div class="container">
+            
+            <div class="text-center mb-8">
+                <h1 style="font-size: 3rem; font-weight: 700; margin-bottom: 1.5rem;">
+                    Get in <span class="gradient-text">Touch</span>
+                </h1>
+                <p style="font-size: 1.125rem; color: var(--muted-foreground); max-width: 600px; margin: 0 auto;">
+                    Have questions about ZURI? Want to collaborate with us? 
+                    We'd love to hear from you!
+                </p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr; gap: 3rem;">
+                <div style="display: flex; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                    <div style="grid-column: 1/-1;">
+                        <div class="card" style="padding: 2rem; background: var(--gradient-card); box-shadow: var(--shadow-card); width: 560px;">
+                            <h2 style="margin: 0 0 1.5rem 0; font-size: 1.5rem; font-weight: 600;">Send us a Message</h2>
+                            
+                            <form id="contactForm" style="display: grid; gap: 1.5rem;">
+                                <div style="display: grid; grid-template-columns: 1fr; gap: 1rem;">
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                        <input 
+                                            type="text" 
+                                            name="name" 
+                                            placeholder="Your Name" 
+                                            required 
+                                            class="form-input"
+                                        />
+                                        <input 
+                                            type="email" 
+                                            name="email" 
+                                            placeholder="Your Email" 
+                                            required 
+                                            class="form-input"
+                                        />
+                                    </div>
+                                    <input 
+                                        type="text" 
+                                        name="subject" 
+                                        placeholder="Subject" 
+                                        required 
+                                        class="form-input"
+                                    />
+                                    <textarea 
+                                        name="message" 
+                                        placeholder="Your Message" 
+                                        rows="6" 
+                                        required 
+                                        class="form-textarea"
+                                    ></textarea>
+                                    <button type="submit" class="btn btn-hero btn-lg" style="width: 100%;">
+                                        Send Message
+                                        <i data-lucide="send"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <div class="chatbox">
+                        <div class="chat-header">ZURI Club Chat Assistant</div>
+
+                        <div id="messages"></div>
+
+                        <div class="suggestions">
+                        <div class="suggestion-btn" onclick="sendSuggested('What is ZURI?')">What does ZURI stands for?</div>
+                        <div class="suggestion-btn" onclick="sendSuggested('What are the benefits of joining?')">Benefits of joining</div>
+                        <div class="suggestion-btn" onclick="sendSuggested('Who can join ZURI?')">Who can join?</div>
+                        <div class="suggestion-btn" onclick="sendSuggested('What activities do you do?')">Club activities</div>
+                        </div>
+
+                        <div class="input-area">
+                        <input type="text" id="userInput" placeholder="Type your message..." onkeydown="checkEnter(event)" />
+                        <button onclick="sendMessage()">Send</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                    
+                    <div class="card" style="padding: 1.5rem; background: var(--gradient-card); box-shadow: var(--shadow-card);">
+                        <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem;">Contact Information</h3>
+                        <div style="display: grid; gap: 1rem;">
+                            <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                <i data-lucide="mail" style="width: 20px; height: 20px; color: var(--primary);"></i>
+                                <span style="color: var(--muted-foreground);">zuri@zetech.ac.ke</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                <i data-lucide="phone" style="width: 20px; height: 20px; color: var(--primary);"></i>
+                                <span style="color: var(--muted-foreground);">+254 123 456 789</span>
+                            </div>
+                            <div style="display: flex; align-items: flex-start; gap: 0.75rem;">
+                                <i data-lucide="map-pin" style="width: 20px; height: 20px; color: var(--primary); margin-top: 2px;"></i>
+                                <span style="color: var(--muted-foreground);">
+                                    Zetech University<br />
+                                    Ruiru, Kenya
+                                </span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                <i data-lucide="clock" style="width: 20px; height: 20px; color: var(--primary);"></i>
+                                <span style="color: var(--muted-foreground);">Mon - Fri: 8:00 AM - 5:00 PM</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card" style="padding: 1.5rem; background: var(--gradient-card); box-shadow: var(--shadow-card);">
+                        <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem;">Follow Us</h3>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <a href="#" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem; background: var(--secondary); border-radius: var(--radius); text-decoration: none; color: inherit; transition: var(--transition-smooth);" 
+                               onmouseover="this.style.background='var(--primary)'; this.style.color='var(--primary-foreground)'" 
+                               onmouseout="this.style.background='var(--secondary)'; this.style.color='inherit'">
+                                <i data-lucide="facebook" style="width: 20px; height: 20px;"></i>
+                                <span>Facebook</span>
+                            </a>
+                            <a href="#" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem; background: var(--secondary); border-radius: var(--radius); text-decoration: none; color: inherit; transition: var(--transition-smooth);"
+                               onmouseover="this.style.background='var(--primary)'; this.style.color='var(--primary-foreground)'" 
+                               onmouseout="this.style.background='var(--secondary)'; this.style.color='inherit'">
+                                <i data-lucide="linkedin" style="width: 20px; height: 20px;"></i>
+                                <span>LinkedIn</span>
+                            </a>
+                            <a href="#" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem; background: var(--secondary); border-radius: var(--radius); text-decoration: none; color: inherit; transition: var(--transition-smooth);"
+                               onmouseover="this.style.background='var(--primary)'; this.style.color='var(--primary-foreground)'" 
+                               onmouseout="this.style.background='var(--secondary)'; this.style.color='inherit'">
+                                <i data-lucide="instagram" style="width: 20px; height: 20px;"></i>
+                                <span>Instagram</span>
+                            </a>
+                            <a href="#" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem; background: var(--secondary); border-radius: var(--radius); text-decoration: none; color: inherit; transition: var(--transition-smooth);"
+                               onmouseover="this.style.background='var(--primary)'; this.style.color='var(--primary-foreground)'" 
+                               onmouseout="this.style.background='var(--secondary)'; this.style.color='inherit'">
+                                <i data-lucide="twitter" style="width: 20px; height: 20px;"></i>
+                                <span>Twitter</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section footer-main">
+                    <a href="index.html" class="footer-logo">
+                        <div class="logo-icon">
+                            <i data-lucide="lightbulb"></i>
+                        </div>
+                        <div class="logo-text">
+                            <h2>ZURI</h2>
+                            <p>Innovation Club</p>
+                        </div>
+                    </a>
+                    <p class="footer-description">
+                        Zetech University Research and Innovation Club - Empowering students to 
+                        innovate, collaborate, and transform ideas into impactful solutions.
+                    </p>
+                    <p class="footer-tagline">
+                        "Innovate. Collaborate. Transform."
+                    </p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="programs.html">Programs</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="join.html">Join Club</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <ul class="contact-list">
+                        <li>
+                            <i data-lucide="map-pin"></i>
+                            <span>Zetech University<br>Ruiru, Kenya</span>
+                        </li>
+                        <li>
+                            <i data-lucide="mail"></i>
+                            <span>zuri@zetech.ac.ke</span>
+                        </li>
+                        <li>
+                            <i data-lucide="phone"></i>
+                            <span>+254 123 456 789</span>
+                        </li>
+                    </ul>
+
+                    <div class="social-media">
+                        <h4>Follow Us</h4>
+                        <div class="social-links">
+                            <a href="#" class="social-link">
+                                <i data-lucide="facebook"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i data-lucide="linkedin"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i data-lucide="instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2024 ZURI - Zetech University Research and Innovation Club. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+ <script>
+    function getReply(input) {
+      input = input.toLowerCase();
+      let reply = "That's a great question! But I'm not sure I have an answer for that. Could you try rephrasing or ask something about ZURI Club?";
+
+      if (input.includes("what is research")) {
+        reply = "Research is a systematic investigation to discover or interpret facts, develop new ideas, or solve problems.";
+      } else if (input.includes("what is zuri") || input.includes("what's zuri")) {
+        reply = "ZURI stands for Zetech University Research and Innovation. It’s a student club focused on tech, creativity, and real-world solutions.";
+      } else if (input.includes("what does zuri stand for")) {
+        reply = "ZURI stands for Zetech University Research and Innovation.";
+      } else if (input.includes("what is the club about") || input.includes("what is zuri all about")) {
+        reply = "ZURI is all about empowering students through innovation, research, collaboration, and tech-driven problem solving.";
+      } else if (input.includes("who can join zuri") || input.includes("can i join zuri")) {
+        reply = "Any Zetech student interested in innovation, research, or tech is welcome to join ZURI!";
+      } else if (input.includes("zuri activities") || input.includes("what does zuri do")) {
+        reply = "ZURI organizes hackathons, research projects, coding sessions, workshops, and more to build innovation culture at Zetech.";
+      } else if (input.includes("when do you meet") || input.includes("zuri meetings")) {
+        reply = "Meetings are usually weekly. You can check with the current exec team or class reps for schedule updates.";
+      } else if (input.includes("benefits of zuri") || input.includes("why join zuri")) {
+        reply = "You'll grow your skills, work on real projects, connect with tech-minded peers, and possibly get mentorship or internship opportunities.";
+      }
+
+      return reply;
+    }
+
+    function sendMessage() {
+      const inputBox = document.getElementById("userInput");
+      const message = inputBox.value.trim();
+      if (message === "") return;
+
+      appendMessage("user", message);
+      const reply = getReply(message);
+      appendMessage("bot", reply);
+
+      inputBox.value = "";
+      const messagesDiv = document.getElementById("messages");
+      messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+
+    function sendSuggested(text) {
+      document.getElementById("userInput").value = text;
+      sendMessage();
+    }
+
+    function appendMessage(sender, text) {
+      const messagesDiv = document.getElementById("messages");
+      const msg = document.createElement("div");
+      msg.className = "message " + sender;
+      msg.textContent = text;
+      messagesDiv.appendChild(msg);
+    }
+
+    function checkEnter(event) {
+      if (event.key === "Enter") {
+        sendMessage();
+      }
+    }
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
