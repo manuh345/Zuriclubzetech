@@ -111,26 +111,28 @@ button:hover {
   <div class="join_container">
     <h1>Join ZURI Club</h1>
     <p>Fill in your details below to become a member of the Zetech University Research and Innovation (ZURI) Club.</p>
+<form id="joinForm">
+  <label for="name">Full Names:</label>
+  <input type="text" id="name" name="name" required />
 
-    <form action="success.html" method="POST" id="joinForm">
-      <label for="name">Full Names:</label>
-      <input type="text" id="name" name="name" required />
+  <label for="course">Course:</label>
+  <input type="text" id="course" name="course" required />
 
-      <label for="course">Course:</label>
-      <input type="text" id="course" name="course" required />
+  <label for="adm">Admission Number:</label>
+  <input type="text" id="adm" name="adm" required />
 
-      <label for="adm">Admission Number:</label>
-      <input type="text" id="adm" name="adm" required />
+  <label for="phone">Phone Number:</label>
+  <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}" />
 
-      <label for="phone">Phone Number:</label>
-      <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}" />
+  <label for="email">Email Address:</label>
+  <input type="email" id="email" name="email" required />
 
-      <label for="email">Email Address:</label>
-      <input type="email" id="email" name="email" required />
+  <button type="submit">Join Now</button>
+  <p id="errorMsg" style="color:red; display:none;">Please fill all fields correctly.</p>
+  <p id="successMsg" style="color:green; display:none;">Submission successful!</p>
+</form>
+    
 
-      <button type="submit">Join Now</button>
-      <p id="errorMsg" style="color:red; display:none;">Please fill all fields correctly.</p>
-    </form>
   </div>
   <footer class="footer">
         <div class="container">
@@ -203,40 +205,32 @@ button:hover {
         </div>
     </footer>
     <script>
-  document.getElementById("joinForm").addEventListener("submit", function (e) {
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbzOLm4sSz9PiXg2ejeZU8dVVtLVG3rLiv_NsdNNHd-XlNBwyW23vpnkhZkiofRjhitf/exec';
+  const form = document.getElementById('joinForm');
+  const successMsg = document.getElementById('successMsg');
+  const errorMsg = document.getElementById('errorMsg');
+
+  form.addEventListener('submit', e => {
     e.preventDefault();
+    errorMsg.style.display = "none";
+    successMsg.style.display = "none";
 
-    const data = {
-      name: document.getElementById("name").value,
-      course: document.getElementById("course").value,
-      adm: document.getElementById("adm").value,
-      phone: document.getElementById("phone").value,
-      email: document.getElementById("email").value
-    };
-
-    fetch("https://script.google.com/macros/s/AKfycbzOLm4sSz9PiXg2ejeZU8dVVtLVG3rLiv_NsdNNHd-XlNBwyW23vpnkhZkiofRjhitf/exec", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-    .then(res => res.json())
-    .then(response => {
-      if (response.status === "success") {
-        // Optional: redirect to success page
-        window.location.href = "success.html";
-      } else {
-        document.getElementById("errorMsg").textContent = "Submission failed.";
-        document.getElementById("errorMsg").style.display = "block";
-      }
-    })
-    .catch(error => {
-      document.getElementById("errorMsg").textContent = "Something went wrong.";
-      document.getElementById("errorMsg").style.display = "block";
-      console.error("Error:", error);
-    });
+    fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+      .then(response => {
+        if (response.ok) {
+          successMsg.style.display = "block";
+          form.reset();
+        } else {
+          throw new Error('Something went wrong');
+        }
+      })
+      .catch(error => {
+        console.error('Error!', error.message);
+        errorMsg.textContent = "Something went wrong. Please try again.";
+        errorMsg.style.display = "block";
+      });
   });
 </script>
+
 </body>
 </html>
