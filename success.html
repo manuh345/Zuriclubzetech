@@ -63,35 +63,51 @@ button:hover {
   </style>
 </head>
 <body>
-      <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <a href="index.html" class="logo">
-                    <div class="logo-icon">
-                        <img src="img/zuri_logo.png" alt="logo">
-                    </div>
-                    <div class="logo-text">
-                        <h1>ZURI</h1>
-                    </div>
-                </a>
+      <header>
+    <div class="container">
+      <div class="header-content">
+        <a href="index.html" class="logo">
+          <div class="logo-icon">
+            <img src="img/zuri_logo.png" alt="logo" />
+          </div>
+          <div class="logo-text">
+            <h1>ZURI</h1>
+          </div>
+        </a>
 
-                <nav class="nav-desktop">
-                    <a href="index.html" class="nav-link">Home</a>
-                    <a href="about.html" class="nav-link">About</a>
-                    <a href="programs.html" class="nav-link">Programs</a>
-                    <a href="projects.html" class="nav-link">Projects</a>
-                    <a href="events.html" class="nav-link">Events</a>
-                    <a href="resources.html" class="nav-link">Resources</a>
-                    <a href="contact.html" class="nav-link">Contact</a>
-                </nav>
+        <nav class="nav-desktop">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="programs.html" class="nav-link">Programs</a>
+          <a href="projects.html" class="nav-link">Projects</a>
+          <a href="events.html" class="nav-link">Events</a>
+          <a href="resources.html" class="nav-link">Resources</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
 
-                <div class="cta-desktop">
-                    <a href="join.html" class="btn btn-hero btn-lg">Join ZURI</a>
-                </div>
-
-            </div>
+        <div class="cta-desktop">
+          <a href="join.html" class="btn btn-hero btn-lg">Join ZURI</a>
         </div>
-    </header>
+
+        <div class="hamburger" onclick="toggleMobileNav()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+
+      <nav id="mobileNav" class="mobile-nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="programs.html">Programs</a>
+        <a href="projects.html">Projects</a>
+        <a href="events.html">Events</a>
+        <a href="resources.html">Resources</a>
+        <a href="contact.html">Contact</a>
+        <a href="join.html">Join ZURI</a>
+      </nav>
+    </div>
+  </header>
   <div class="Success_container">
     <h1>🎉 Registration Successful!</h1>
     <p> <strong>WELCOME TO ZETECH RESEARCH AND INNOVATION CLUB. <br>Join us on this exciting journey of discovery, exploration, and innovation.</strong></p>
@@ -100,5 +116,17 @@ button:hover {
       <button class="whatsapp.join">Join</button>
     </a>
   </div>
+    <!-- JS for Mobile Nav Toggle -->
+  <script>
+    function toggleMobileNav() {
+      const nav = document.getElementById("mobileNav");
+      nav.classList.toggle("active");
+    }
+  </script>
+
+  <!-- Icon Library (Lucide) -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script>lucide.createIcons();</script>
+    <script src="script.js"></script>
 </body>
 </html>
