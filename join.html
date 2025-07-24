@@ -130,7 +130,32 @@ button:hover {
   <button type="submit">Submit</button>
 </form>
 
-<p id="msg"></p>
+<div class="join_container">
+  <h1>Join ZURI Club</h1>
+  <p>Fill in your details below to become a member of the Zetech University Research and Innovation (ZURI) Club.</p>
+  <form id="google-form">
+    <label>Full Name:</label>
+    <input name="entry.1359261303" type="text" required /><br /><br />
+
+    <label>Course:</label>
+    <input name="entry.474170192" type="text" required /><br /><br />
+
+    <label>Admission Number:</label>
+    <input name="entry.1452558103" type="text" required /><br /><br />
+
+    <label>Phone:</label>
+    <input name="entry.951499501" type="text" required /><br /><br />
+
+    <label>Email:</label>
+    <input name="entry.1675821230" type="email" required /><br /><br />
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <p id="msg"></p>
+</div>
+
+
 
 
 
@@ -227,24 +252,24 @@ button:hover {
             </div>
         </div>
     </footer>
-  <script>
+ <script>
   const form = document.getElementById("google-form");
 
   form.addEventListener("submit", function (e) {
     e.preventDefault();
     const formData = new FormData(form);
 
-    fetch("https://docs.google.com/forms/d/e/1FAIpQLSdTWtlPR1s2xGANR2bWFeEa7uC4fb8K-XbjkwHYhVatpfwUQA/viewform?usp=header", {
+    fetch("https://docs.google.com/forms/d/e/1FAIpQLSdTWtlPR1s2xGANR2bWFeEa7uC4fb8K-XbjkwHYhVatpfwUQA/formResponse", {
       method: "POST",
       mode: "no-cors",
       body: formData,
     }).then(() => {
-      // Redirect to success page after short delay (optional)
+      document.getElementById("msg").innerText = "Form submitted successfully!";
       setTimeout(() => {
-        window.location.href = "success.html"; // Make sure this file exists
-      }, 500);
+        window.location.href = "success.html"; // optional
+      }, 1000);
     }).catch(() => {
-      document.getElementById("msg").innerText = "Something went wrong. Please try again.";
+      document.getElementById("msg").innerText = "Something went wrong.";
     });
   });
 </script>
