@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - ZURI Innovation Club</title>
+    <title>Home </title>
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <style>
         .hero {
-            background: url('img/zetech_uni.jpg')center/ cover no-repeat;
+            background: url('img/zetech_uni.jpg')center/cover no-repeat;
             color: white;
             text-align: center;
             padding: 8rem 4%;
@@ -20,34 +20,34 @@
         .hero h1 {
             font-size: 3rem;
             font-weight: 800;
-            color: blue;
+            color: white;
         }
 
         .hero p {
             margin: 1rem 0;
             font-size: 1.2rem;
+            color: white;
         }
 
         .hero-buttons {
             margin-top: 2rem;
+            background: linear-gradient(135deg, rgba(0,123,255,0.9), rgba(0,212,255,0.8));
+            display: none;
+            color: white;
+            font-size: 0.9rem;  
+            padding: 0.35em 0.9em;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            font-weight: 600;
             
         }
 
         .hero-buttons a {
             margin: 0 0.5rem;
         }
-
-      /*  .sectionindex {
-            padding: 4rem 4%;
-            background-color: white;
-            text-align: center;
-        }
-
-        .sectionindex h2 {
-            font-size: 2rem;
-            margin-bottom: 2rem;
-        }*/
-
         .columns {
             display: flex;
             justify-content: space-around;
@@ -59,7 +59,7 @@
             flex: 1;
             min-width: 250px;
             padding: 1rem;
-            background-color: navy;
+            background: linear-gradient(90deg, #6C00FF, #003399);
             border-radius: 8px;
         }
 
@@ -94,6 +94,8 @@
         }
         .sectionindex{
             background-color: grey;
+            padding: 10px;
+        
         }
         footer {
             background-color: #001F66;
@@ -122,45 +124,56 @@
     </style>
 </head>
 <body>
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <a href="index.html" class="logo">
-                    <div class="logo-icon">
-                        <img src="img/zuri_logo.png" alt="logo">
-                    </div>
-                    <div class="logo-text">
-                        <h1>ZURI</h1>
-                    </div>
-                </a>
+    <header>
+    <div class="container">
+      <div class="header-content">
+        <a href="index.html" class="logo">
+          <div class="logo-icon">
+            <img src="img/zuri_logo.png" alt="logo" />
+          </div>
+          <div class="logo-text">
+            <h1>ZURI</h1>
+          </div>
+        </a>
 
-                <nav class="nav-desktop">
-                    <a href="index.html" class="nav-link">Home</a>
-                    <a href="about.html" class="nav-link">About</a>
-                    <a href="programs.html" class="nav-link">Programs</a>
-                    <a href="projects.html" class="nav-link">Projects</a>
-                    <a href="events.html" class="nav-link">Events</a>
-                    <a href="resources.html" class="nav-link">Resources</a>
-                    <a href="contact.html" class="nav-link">Contact</a>
-                </nav>
+        <nav class="nav-desktop">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="programs.html" class="nav-link">Programs</a>
+          <a href="projects.html" class="nav-link">Projects</a>
+          <a href="events.html" class="nav-link">Events</a>
+          <a href="resources.html" class="nav-link">Resources</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
 
-                <div class="cta-desktop">
-                    <a href="join.html" class="btn btn-hero btn-lg">Join ZURI Club</a>
-                </div>
-
-            </div>
+        <div class="cta-desktop">
+          <a href="join.html" class="btn btn-hero btn-lg">Join ZURI</a>
         </div>
-    </header>
 
+        <div class="hamburger" onclick="toggleMobileNav()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+
+      <nav id="mobileNav" class="mobile-nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="programs.html">Programs</a>
+        <a href="projects.html">Projects</a>
+        <a href="events.html">Events</a>
+        <a href="resources.html">Resources</a>
+        <a href="contact.html">Contact</a>
+        <a href="join.html">Join ZURI</a>
+      </nav>
+    </div>
+  </header>
     <main>
         
     <section class="hero">
         <h1>Innovate. Collaborate. Transform.</h1>
-        <p>Join ZURI – Zetech University’s premier research and innovation club. Where brilliant minds unite to create solutions that shape the future.</p>
-        <div class="hero-buttons">
-            <a class="btn-primary" style="background-color: blue; color: white; align-items: center" href="join.html">Join Our Community</a>
-            <a class="btn-primary" style="background-color: blue; color: white; align-items: center" href="programs.html">Explore Projects</a>
-        </div>
+        <p>Join ZURI – Zetech University’s premier research and innovation club. <br> Where brilliant minds unite to create solutions that shape the future.</p>
     </section>
 
     <section class="sectionindex">
@@ -183,17 +196,17 @@
         <p>The values that guide our innovation journey</p>
         <div class="values">
             <div class="value">
-                <i class="icon">💡</i>
+                <img src="img/innovation.png" alt="logo" />
                 <h3>Innovation</h3>
                 <p>Encouraging creative thinking and breakthrough solutions to complex problems</p>
             </div>
             <div class="value">
-                <i class="icon">🤝</i>
+                <img src="img/collaborate.png" alt="logo" />
                 <h3>Collaboration</h3>
                 <p>Building strong partnerships and fostering teamwork across disciplines</p>
             </div>
             <div class="value">
-                <i class="icon">⚡</i>
+                <img src="img/inpact.png" alt="logo" />
                 <h3>Impact</h3>
                 <p>Creating meaningful solutions that benefit society and drive positive change</p>
             </div>
@@ -203,7 +216,10 @@
     <section class="cta">
         <h2>Ready to Shape the Future?</h2>
         <p>Join a community of innovators, researchers, and change-makers. Your ideas could be the next breakthrough that transforms our world.</p>
-        <a class="btn-primary" href="#">Become a Member</a>
+                            <a href="join.html" class="btn btn-hero btn-lg">
+                        Become a Member
+                        <i data-lucide="arrow-right"></i>
+                    </a>
     </section>           
     </main>
 
@@ -214,7 +230,7 @@
                 <div class="footer-section footer-main">
                     <a href="index.html" class="footer-logo">
                         <div class="logo-icon">
-                            <i data-lucide="lightbulb"></i>
+                            <img src="img/zuri_logo.png" alt="logo" />
                         </div>
                         <div class="logo-text">
                             <h2>ZURI</h2>
@@ -252,6 +268,8 @@
                             <i data-lucide="mail"></i>
                             <span>zuri@zetech.ac.ke</span>
                         </li>
+                        <li>
+
                     </ul>
 
                     <div class="social-media">
@@ -277,6 +295,17 @@
         </div>
     </footer>
 
+  <!-- JS for Mobile Nav Toggle -->
+  <script>
+    function toggleMobileNav() {
+      const nav = document.getElementById("mobileNav");
+      nav.classList.toggle("active");
+    }
+  </script>
+
+  <!-- Icon Library (Lucide) -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script>lucide.createIcons();</script>
     <script src="script.js"></script>
 </body>
-</html>
+</html>v
