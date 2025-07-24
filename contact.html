@@ -111,35 +111,51 @@
     </style>
 </head>
 <body>
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <a href="index.html" class="logo">
-                    <div class="logo-icon">
-                        <img src="img/zuri_logo.png" alt="logo">
-                    </div>
-                    <div class="logo-text">
-                        <h1>ZURI</h1>
-                    </div>
-                </a>
+    <header>
+    <div class="container">
+      <div class="header-content">
+        <a href="index.html" class="logo">
+          <div class="logo-icon">
+            <img src="img/zuri_logo.png" alt="logo" />
+          </div>
+          <div class="logo-text">
+            <h1>ZURI</h1>
+          </div>
+        </a>
 
-                <nav class="nav-desktop">
-                    <a href="index.html" class="nav-link">Home</a>
-                    <a href="about.html" class="nav-link">About</a>
-                    <a href="programs.html" class="nav-link">Programs</a>
-                    <a href="projects.html" class="nav-link">Projects</a>
-                    <a href="events.html" class="nav-link">Events</a>
-                    <a href="resources.html" class="nav-link">Resources</a>
-                    <a href="contact.html" class="nav-link">Contact</a>
-                </nav>
+        <nav class="nav-desktop">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="programs.html" class="nav-link">Programs</a>
+          <a href="projects.html" class="nav-link">Projects</a>
+          <a href="events.html" class="nav-link">Events</a>
+          <a href="resources.html" class="nav-link">Resources</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
 
-                <div class="cta-desktop">
-                    <a href="join.html" class="btn btn-hero btn-lg">Join ZURI</a>
-                </div>
-
-            </div>
+        <div class="cta-desktop">
+          <a href="join.html" class="btn btn-hero btn-lg">Join ZURI</a>
         </div>
-    </header>
+
+        <div class="hamburger" onclick="toggleMobileNav()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+
+      <nav id="mobileNav" class="mobile-nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="programs.html">Programs</a>
+        <a href="projects.html">Projects</a>
+        <a href="events.html">Events</a>
+        <a href="resources.html">Resources</a>
+        <a href="contact.html">Contact</a>
+        <a href="join.html">Join ZURI</a>
+      </nav>
+    </div>
+  </header>
 
     <main style="min-height: 100vh; padding: 5rem 0;">
         <div class="container">
@@ -157,7 +173,7 @@
             <div style="display: grid; grid-template-columns: 1fr; gap: 3rem;">
                 <div style="display: flex; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
                     <div style="grid-column: 1/-1;">
-                        <div class="card" style="padding: 2rem; background: var(--gradient-card); box-shadow: var(--shadow-card); width: 560px;">
+                        <div class="card" style="padding: 2rem; background: var(--gradient-card); box-shadow: var(--shadow-card); width: 1000px;">
                             <h2 style="margin: 0 0 1.5rem 0; font-size: 1.5rem; font-weight: 600;">Send us a Message</h2>
                             
                             <form id="contactForm" style="display: grid; gap: 1.5rem;">
@@ -201,23 +217,7 @@
                         </div>
                     </div>
                     
-                    <div class="chatbox">
-                        <div class="chat-header">ZURI Club Chat Assistant</div>
 
-                        <div id="messages"></div>
-
-                        <div class="suggestions">
-                        <div class="suggestion-btn" onclick="sendSuggested('What is ZURI?')">What does ZURI stands for?</div>
-                        <div class="suggestion-btn" onclick="sendSuggested('What are the benefits of joining?')">Benefits of joining</div>
-                        <div class="suggestion-btn" onclick="sendSuggested('Who can join ZURI?')">Who can join?</div>
-                        <div class="suggestion-btn" onclick="sendSuggested('What activities do you do?')">Club activities</div>
-                        </div>
-
-                        <div class="input-area">
-                        <input type="text" id="userInput" placeholder="Type your message..." onkeydown="checkEnter(event)" />
-                        <button onclick="sendMessage()">Send</button>
-                        </div>
-                    </div>
                 </div>
 
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
@@ -229,10 +229,7 @@
                                 <i data-lucide="mail" style="width: 20px; height: 20px; color: var(--primary);"></i>
                                 <span style="color: var(--muted-foreground);">zuri@zetech.ac.ke</span>
                             </div>
-                            <div style="display: flex; align-items: center; gap: 0.75rem;">
-                                <i data-lucide="phone" style="width: 20px; height: 20px; color: var(--primary);"></i>
-                                <span style="color: var(--muted-foreground);">+254 123 456 789</span>
-                            </div>
+
                             <div style="display: flex; align-items: flex-start; gap: 0.75rem;">
                                 <i data-lucide="map-pin" style="width: 20px; height: 20px; color: var(--primary); margin-top: 2px;"></i>
                                 <span style="color: var(--muted-foreground);">
@@ -289,7 +286,7 @@
                 <div class="footer-section footer-main">
                     <a href="index.html" class="footer-logo">
                         <div class="logo-icon">
-                            <i data-lucide="lightbulb"></i>
+                            <img src="img/zuri_logo.png" alt="logo" />
                         </div>
                         <div class="logo-text">
                             <h2>ZURI</h2>
@@ -327,10 +324,7 @@
                             <i data-lucide="mail"></i>
                             <span>zuri@zetech.ac.ke</span>
                         </li>
-                        <li>
-                            <i data-lucide="phone"></i>
-                            <span>+254 123 456 789</span>
-                        </li>
+
                     </ul>
 
                     <div class="social-media">
@@ -356,30 +350,6 @@
         </div>
     </footer>
  <script>
-    function getReply(input) {
-      input = input.toLowerCase();
-      let reply = "That's a great question! But I'm not sure I have an answer for that. Could you try rephrasing or ask something about ZURI Club?";
-
-      if (input.includes("what is research")) {
-        reply = "Research is a systematic investigation to discover or interpret facts, develop new ideas, or solve problems.";
-      } else if (input.includes("what is zuri") || input.includes("what's zuri")) {
-        reply = "ZURI stands for Zetech University Research and Innovation. It’s a student club focused on tech, creativity, and real-world solutions.";
-      } else if (input.includes("what does zuri stand for")) {
-        reply = "ZURI stands for Zetech University Research and Innovation.";
-      } else if (input.includes("what is the club about") || input.includes("what is zuri all about")) {
-        reply = "ZURI is all about empowering students through innovation, research, collaboration, and tech-driven problem solving.";
-      } else if (input.includes("who can join zuri") || input.includes("can i join zuri")) {
-        reply = "Any Zetech student interested in innovation, research, or tech is welcome to join ZURI!";
-      } else if (input.includes("zuri activities") || input.includes("what does zuri do")) {
-        reply = "ZURI organizes hackathons, research projects, coding sessions, workshops, and more to build innovation culture at Zetech.";
-      } else if (input.includes("when do you meet") || input.includes("zuri meetings")) {
-        reply = "Meetings are usually weekly. You can check with the current exec team or class reps for schedule updates.";
-      } else if (input.includes("benefits of zuri") || input.includes("why join zuri")) {
-        reply = "You'll grow your skills, work on real projects, connect with tech-minded peers, and possibly get mentorship or internship opportunities.";
-      }
-
-      return reply;
-    }
 
     function sendMessage() {
       const inputBox = document.getElementById("userInput");
@@ -414,6 +384,17 @@
       }
     }
   </script>
-  <script src="script.js"></script>
+  <!-- JS for Mobile Nav Toggle -->
+  <script>
+    function toggleMobileNav() {
+      const nav = document.getElementById("mobileNav");
+      nav.classList.toggle("active");
+    }
+  </script>
+
+  <!-- Icon Library (Lucide) -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script>lucide.createIcons();</script>
+    <script src="script.js"></script>
 </body>
 </html>
