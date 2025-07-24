@@ -111,7 +111,30 @@ button:hover {
   <div class="join_container">
     <h1>Join ZURI Club</h1>
     <p>Fill in your details below to become a member of the Zetech University Research and Innovation (ZURI) Club.</p>
-<form id="joinForm">
+<form id="google-form">
+  <label>Full Name:</label>
+  <input name="entry.1404446155" type="text" required /><br /><br />
+
+  <label>Course:</label>
+  <input name="entry.1442025465" type="text" required /><br /><br />
+
+  <label>Admission Number:</label>
+  <input name="entry.1469118816" type="text" required /><br /><br />
+
+  <label>Phone:</label>
+  <input name="entry.1519042224" type="text" required /><br /><br />
+
+  <label>Email:</label>
+  <input name="entry.1004168474" type="email" required /><br /><br />
+
+  <button type="submit">Submit</button>
+</form>
+
+<p id="msg"></p>
+
+
+
+  <!--
   <label for="name">Full Names:</label>
   <input type="text" id="name" name="name" required />
 
@@ -129,7 +152,7 @@ button:hover {
 
   <button type="submit">Join Now</button>
   <p id="errorMsg" style="color:red; display:none;">Please fill all fields correctly.</p>
-  <p id="successMsg" style="color:green; display:none;">Submission successful!</p>
+  <p id="successMsg" style="color:green; display:none;">Submission successful!</p>-->
 </form>
     
 
@@ -204,6 +227,28 @@ button:hover {
             </div>
         </div>
     </footer>
+  <script>
+  const form = document.getElementById("google-form");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const formData = new FormData(form);
+
+    fetch("https://docs.google.com/forms/d/e/1FAIpQLSdTWtlPR1s2xGANR2bWFeEa7uC4fb8K-XbjkwHYhVatpfwUQA/formResponse", {
+      method: "POST",
+      mode: "no-cors",
+      body: formData,
+    }).then(() => {
+      // Redirect to success page after short delay (optional)
+      setTimeout(() => {
+        window.location.href = "success.html"; // Make sure this file exists
+      }, 500);
+    }).catch(() => {
+      document.getElementById("msg").innerText = "Something went wrong. Please try again.";
+    });
+  });
+</script>
+  <!--
     <script>
   const scriptURL = 'https://script.google.com/macros/s/AKfycbwSRfYjie9WZdO3zVLekFml3K-yBlRPYjCcxSbXrHZMa_471TzuZob-Zi8BrRJxlQUR9A/exec';
   const form = document.getElementById('joinForm');
@@ -230,8 +275,8 @@ button:hover {
         errorMsg.style.display = "block";
       });
   });
-</script>
-  <script src="form-submit.js" defer></script>
+</script>-
+  <script src="form-submit.js" defer></script>-->
 
 
 </body>
