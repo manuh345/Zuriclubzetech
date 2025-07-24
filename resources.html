@@ -3,330 +3,181 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - ZURI Innovation Club</title>
+    <title>About Us </title>
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <style>
-    .hero {
-    text-align: center;
-    padding: 4rem 1rem 2rem;
-    background-color: #004080;
-    color: white;
+    .resources-section {
+  padding: 2rem 1rem;
+  max-width: 900px;
+  margin: auto;
+  font-size: 0.95rem;
 }
 
-.hero-title {
-    font-size: 2.75rem;
-    margin-bottom: 0.5rem;
+.resources-header {
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
-.gradient-text {
-    background: linear-gradient(to right, #00b4db, #0083b0);
-    -webkit-background-clip: text; /* fixed typo */
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    color: transparent;
+.resources-header h1 {
+  font-size: 1.6rem;
+  margin-bottom: 0.3rem;
+  color: #1a237e;
 }
 
-.hero-subtitle {
-    font-size: 1.2rem;
-    max-width: 700px;
-    margin: 0 auto;
-    opacity: 0.9;
-    line-height: 1.5;
+.resources-header p {
+  color: #555;
+  font-size: 0.9rem;
 }
 
-.filters {
-    text-align: center;
-    margin: 2rem 0 3rem;
+.resource-filters {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 1.5rem;
 }
 
-.filter-btn {
-    background-color: #f0f0f0;
-    border: none;
-    padding: 0.6rem 1.5rem;
-    margin: 0.3rem;
-    border-radius: 20px;
-    cursor: pointer;
-    font-weight: 600;
-    color: #333;
-    transition: background-color 0.3s ease, color 0.3s ease;
+.resource-filters button {
+  padding: 0.4rem 0.8rem;
+  border: 1px solid #ccc;
+  background: white;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
 }
 
-.filter-btn:hover,
-.filter-btn.active {
-    background-color: #004080;
-    color: white;
+.resource-filters button.active,
+.resource-filters button:hover {
+  background: #1a237e;
+  color: white;
+  border-color: #1a237e;
 }
 
-.resource-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    padding: 0 1rem;
+.resources-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
 
-.article-card {
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 6px 14px rgba(0,0,0,0.07);
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+.resource-card {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  transition: 0.2s ease;
 }
 
-.article-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+.resource-card:hover {
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  border-color: #ccc;
 }
 
-.article-image-container {
-    position: relative;
-    height: 180px;
-    overflow: hidden;
-    border-bottom: 1px solid #eee;
+.resource-card h3 {
+  font-size: 1.05rem;
+  margin-bottom: 0.5rem;
+  color: #1a237e;
 }
 
-.article-image-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.4s ease;
+.resource-card p {
+  font-size: 0.85rem;
+  margin-bottom: 0.75rem;
+  color: #444;
 }
 
-.article-card:hover .article-image-container img {
-    transform: scale(1.05);
+.view-link {
+  font-size: 0.85rem;
+  color: #0d47a1;
+  text-decoration: underline;
 }
 
-.category-badge {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    background-color: #0083b0;
-    color: white;
-    padding: 0.4rem 0.9rem;
-    font-size: 0.75rem;
-    border-radius: 20px;
-    font-weight: 600;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-    text-transform: uppercase;
-    user-select: none;
-}
-
-/* Optional: Different badge colors per category (if needed) */
-/* 
-.article-card[data-category="webdev"] .category-badge {
-    background-color: #4a90e2;
-}
-.article-card[data-category="ai"] .category-badge {
-    background-color: #f5a623;
-}
-.article-card[data-category="design"] .category-badge {
-    background-color: #7b61ff;
-}
-*/
-
-.article-content {
-    padding: 1.25rem 1.5rem 2rem;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-}
-
-.article-title {
-    font-size: 1.25rem;
-    font-weight: 700;
-    margin: 0 0 0.75rem;
-    color: #222;
-}
-
-.article-excerpt {
-    font-size: 1rem;
-    margin-bottom: 1rem;
-    color: #555;
-    line-height: 1.5;
-    flex-grow: 1;
-}
-
-.article-tags {
-    margin-bottom: 1.25rem;
-}
-
-.article-tags .tag {
-    background-color: #e1ecf4;
-    color: #0366d6;
-    padding: 0.35rem 0.8rem;
-    font-size: 0.85rem;
-    margin-right: 0.4rem;
-    border-radius: 20px;
-    display: inline-block;
-    font-weight: 600;
-    user-select: none;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.article-tags .tag:hover {
-    background-color: #0366d6;
-    color: white;
-    cursor: default;
-}
-
-.btn-outline.small {
-    background-color: transparent;
-    border: 2px solid #0083b0;
-    padding: 0.5rem 1.2rem;
-    font-size: 0.9rem;
-    border-radius: 6px;
-    color: #0083b0;
-    text-decoration: none;
-    font-weight: 600;
-    display: inline-block;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.btn-outline.small:hover {
-    background-color: #0083b0;
-    color: white;
-}
-
-/* Responsive tweaks */
-@media (max-width: 600px) {
-    .hero-title {
-        font-size: 2rem;
-    }
-    .resource-grid {
-        grid-template-columns: 1fr;
-        padding: 0 0.5rem;
-    }
-    .article-image-container {
-        height: 160px;
-    }
-}
-
-    
 
     </style>
 </head>
 <body>
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <a href="index.html" class="logo">
-                    <div class="logo-icon">
-                        <img src="img/zuri_logo.png" alt="logo">
-                    </div>
-                    <div class="logo-text">
-                        <h1>ZURI</h1>
-                    </div>
-                </a>
+    <header>
+    <div class="container">
+      <div class="header-content">
+        <a href="index.html" class="logo">
+          <div class="logo-icon">
+            <img src="img/zuri_logo.png" alt="logo" />
+          </div>
+          <div class="logo-text">
+            <h1>ZURI</h1>
+          </div>
+        </a>
 
-                <nav class="nav-desktop">
-                    <a href="index.html" class="nav-link">Home</a>
-                    <a href="about.html" class="nav-link">About</a>
-                    <a href="programs.html" class="nav-link">Programs</a>
-                    <a href="projects.html" class="nav-link">Projects</a>
-                    <a href="events.html" class="nav-link">Events</a>
-                    <a href="resources.html" class="nav-link">Resources</a>
-                    <a href="contact.html" class="nav-link">Contact</a>
-                </nav>
+        <nav class="nav-desktop">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="programs.html" class="nav-link">Programs</a>
+          <a href="projects.html" class="nav-link">Projects</a>
+          <a href="events.html" class="nav-link">Events</a>
+          <a href="resources.html" class="nav-link">Resources</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
 
-                <div class="cta-desktop">
-                    <a href="join.html" class="btn btn-hero btn-lg">Join ZURI</a>
-                </div>
-
-            </div>
+        <div class="cta-desktop">
+          <a href="join.html" class="btn btn-hero btn-lg">Join ZURI</a>
         </div>
-    </header>
+
+        <div class="hamburger" onclick="toggleMobileNav()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+
+      <nav id="mobileNav" class="mobile-nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="programs.html">Programs</a>
+        <a href="projects.html">Projects</a>
+        <a href="events.html">Events</a>
+        <a href="resources.html">Resources</a>
+        <a href="contact.html">Contact</a>
+        <a href="join.html">Join ZURI</a>
+      </nav>
+    </div>
+  </header>
         <main>
-        <section class="hero">
-            <div class="container">
-                <h1 class="hero-title">
-                    Learning <span class="gradient-text">Resources</span>
-                </h1>
-                <p class="hero-subtitle">
-                    Access curated guides, tutorials, documentation, and toolkits to support your innovation journey.
-                </p>
-            </div>
-        </section>
+        <section class="resources-section">
+  <div class="resources-header">
+    <h1>Resources</h1>
+    <p>Explore curated tools, documents, and learning content from the ZURI Club.</p>
+  </div>
 
-        <section class="filter-bar container">
-            <input type="text" id="searchInput" placeholder="Search resources..." class="search-input" />
-            <div class="filters">
-                <button class="filter-btn" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="webdev">Web Dev</button>
-                <button class="filter-btn" data-filter="ai">AI</button>
-                <button class="filter-btn" data-filter="design">Design</button>
-                <button class="filter-btn" data-filter="research">Research</button>
-            </div>
-        </section>
+  <div class="resource-filters">
+    <button class="active">All</button>
+    <button>Research</button>
+    <button>Workshops</button>
+    <button>Reports</button>
+  </div>
 
-        <section class="articles container">
-            <article class="article-card" data-category="webdev">
-                <div class="article-image-container">
-                    <img src="https://images.unsplash.com/photo-1581091012184-5c8e4f12f745?w=400&h=250&fit=crop" alt="HTML Basics">
-                    <div class="category-badge">Web Dev</div>
-                </div>
-                <div class="article-content">
-                    <h3 class="article-title">Getting Started with HTML & CSS</h3>
-                    <p class="article-excerpt">
-                        A beginner-friendly guide to building your first website using HTML and CSS.
-                    </p>
-                    <div class="article-tags">
-                        <span class="tag">HTML</span>
-                        <span class="tag">CSS</span>
-                        <span class="tag">Frontend</span>
-                    </div>
-                    <div class="article-footer">
-                        <a href="https://developer.mozilla.org/en-US/docs/Learn" class="btn btn-outline small" target="_blank">Open Resource</a>
-                    </div>
-                </div>
-            </article>
+  <div class="resources-grid">
+    <div class="resource-card">
+      <h3>Research Toolkit</h3>
+      <p>A quick-start toolkit to guide new researchers.</p>
+      <a href="#" class="view-link">View PDF</a>
+    </div>
 
-            <article class="article-card" data-category="ai">
-                <div class="article-image-container">
-                    <img src="https://images.unsplash.com/photo-1603791440384-56cd371ee9a7?w=400&h=250&fit=crop" alt="AI Learning">
-                    <div class="category-badge">AI</div>
-                </div>
-                <div class="article-content">
-                    <h3 class="article-title">Introduction to AI and Machine Learning</h3>
-                    <p class="article-excerpt">
-                        Learn the fundamentals of artificial intelligence, including machine learning basics.
-                    </p>
-                    <div class="article-tags">
-                        <span class="tag">AI</span>
-                        <span class="tag">ML</span>
-                        <span class="tag">Data</span>
-                    </div>
-                    <div class="article-footer">
-                        <a href="https://www.coursera.org/learn/machine-learning" class="btn btn-outline small" target="_blank">Open Resource</a>
-                    </div>
-                </div>
-            </article>
+    <div class="resource-card">
+      <h3>Innovation Workshop Slides</h3>
+      <p>Download slides from our July Innovation Bootcamp.</p>
+      <a href="#" class="view-link">Download</a>
+    </div>
 
-            <article class="article-card" data-category="design">
-                <div class="article-image-container">
-                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=250&fit=crop" alt="UI Design">
-                    <div class="category-badge">Design</div>
-                </div>
-                <div class="article-content">
-                    <h3 class="article-title">UI/UX Design Principles</h3>
-                    <p class="article-excerpt">
-                        Understand the core principles of good UI/UX design with examples and case studies.
-                    </p>
-                    <div class="article-tags">
-                        <span class="tag">UI</span>
-                        <span class="tag">UX</span>
-                        <span class="tag">Figma</span>
-                    </div>
-                    <div class="article-footer">
-                        <a href="https://uxdesign.cc" class="btn btn-outline small" target="_blank">Open Resource</a>
-                    </div>
-                </div>
-            </article>
-        </section>
+    <div class="resource-card">
+      <h3>2025 Progress Report</h3>
+      <p>Club milestones and achievements from Jan–June 2025.</p>
+      <a href="#" class="view-link">Read Report</a>
+    </div>
+  </div>
+</section>
+
     </main>
 
 
@@ -337,7 +188,7 @@
                 <div class="footer-section footer-main">
                     <a href="index.html" class="footer-logo">
                         <div class="logo-icon">
-                            <i data-lucide="lightbulb"></i>
+                            <img src="img/zuri_logo.png" alt="logo" />
                         </div>
                         <div class="logo-text">
                             <h2>ZURI</h2>
@@ -375,10 +226,7 @@
                             <i data-lucide="mail"></i>
                             <span>zuri@zetech.ac.ke</span>
                         </li>
-                        <li>
-                            <i data-lucide="phone"></i>
-                            <span>+254 123 456 789</span>
-                        </li>
+
                     </ul>
 
                     <div class="social-media">
@@ -403,7 +251,17 @@
             </div>
         </div>
     </footer>
+  <!-- JS for Mobile Nav Toggle -->
+  <script>
+    function toggleMobileNav() {
+      const nav = document.getElementById("mobileNav");
+      nav.classList.toggle("active");
+    }
+  </script>
 
+  <!-- Icon Library (Lucide) -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script>lucide.createIcons();</script>
     <script src="script.js"></script>
 </body>
 </html>
