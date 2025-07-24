@@ -259,7 +259,7 @@ button:hover {
     e.preventDefault();
     const formData = new FormData(form);
 
-    fetch("https://docs.google.com/forms/d/e/1FAIpQLSdTWtlPR1s2xGANR2bWFeEa7uC4fb8K-XbjkwHYhVatpfwUQA/formResponse", {
+    fetch("https://docs.google.com/forms/d/e/1FAIpQLSdTWtlPR1s2xGANR2bWFeEa7uC4fb8K-XbjkwHYhVatpfwUQA/viewform?usp=header", {
       method: "POST",
       mode: "no-cors",
       body: formData,
