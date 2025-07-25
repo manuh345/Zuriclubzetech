@@ -1,45 +1,44 @@
 :root {
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(222.2, 84%, 4.9%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(222.2, 84%, 4.9%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(222.2, 84%, 4.9%);
+  --primary: hsl(250, 100%, 50%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(220, 15%, 95%);
+  --secondary-foreground: hsl(222.2, 47.4%, 11.2%);
+  --muted: hsl(220, 15%, 95%);
+  --muted-foreground: hsl(215.4, 16.3%, 46.9%);
+  --accent: hsl(280, 100%, 65%);
+  --accent-foreground: hsl(0, 0%, 100%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(0, 0%, 100%);
+  --border: hsl(214.3, 31.8%, 91.4%);
+  --input: hsl(214.3, 31.8%, 91.4%);
+  --ring: hsl(250, 100%, 50%);
+  --radius: 0.5rem;
 
-    --background: hsl(0, 0%, 100%);
-    --foreground: hsl(222.2, 84%, 4.9%);
-    --card: hsl(0, 0%, 100%);
-    --card-foreground: hsl(222.2, 84%, 4.9%);
-    --primary: hsl(250, 100%, 50%);
-    --primary-foreground: hsl(0, 0%, 100%);
-    --primary-glow: hsl(260, 100%, 70%);
-    --secondary: hsl(220, 15%, 95%);
-    --secondary-foreground: hsl(222.2, 47.4%, 11.2%);
-    --muted: hsl(220, 15%, 95%);
-    --muted-foreground: hsl(215.4, 16.3%, 46.9%);
-    --accent: hsl(280, 100%, 65%);
-    --accent-foreground: hsl(0, 0%, 100%);
-    --border: hsl(214.3, 31.8%, 91.4%);
-    --input: hsl(214.3, 31.8%, 91.4%);
-    --ring: hsl(250, 100%, 50%);
+  --gradient-primary: linear-gradient(135deg, hsl(250, 100%, 50%), hsl(280, 100%, 65%));
+  --gradient-hero: linear-gradient(135deg, hsl(250, 100%, 50%) 0%, hsl(280, 100%, 65%) 50%, hsl(300, 100%, 60%) 100%);
+  --gradient-card: linear-gradient(145deg, hsl(0, 0%, 100%) 0%, hsl(220, 15%, 98%) 100%);
 
-    --gradient-primary: linear-gradient(135deg, hsl(250, 100%, 50%), hsl(280, 100%, 65%));
-    --gradient-hero: linear-gradient(135deg, hsl(250, 100%, 50%) 0%, hsl(280, 100%, 65%) 50%, hsl(300, 100%, 60%) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(0, 0%, 100%) 0%, hsl(220, 15%, 98%) 100%);
-    
-    --shadow-glow: 0 10px 40px hsl(250, 100%, 50%, 0.2);
-    --shadow-card: 0 4px 20px hsl(222.2, 84%, 4.9%, 0.08);
-    
+  --shadow-glow: 0 10px 40px hsla(250, 100%, 50%, 0.2);
+  --shadow-card: 0 4px 20px hsla(222.2, 84%, 4.9%, 0.08);
 
-    --font-family: 'Inter', sans-serif;
-    
-
-    --container-max-width: 1280px;
-    --spacing-xs: 0.25rem;
-    --spacing-sm: 0.5rem;
-    --spacing-md: 1rem;
-    --spacing-lg: 2rem;
-    --spacing-xl: 4rem;
-    
-
-    --radius: 0.5rem;
-
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --font-family: 'Inter', sans-serif;
+  --container-max-width: 1280px;
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 4rem;
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+/* Removed: dark mode styles */
+
 
 @media (prefers-color-scheme: dark) {
     :root {
@@ -78,6 +77,33 @@ body {
     margin: 0 auto;
     padding: 0 var(--spacing-md);
 }
+.hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background: var(--foreground);
+      margin: 4px 0;
+      transition: 0.3s;
+    }
+
+    .mobile-nav {
+      display: none;
+      flex-direction: column;
+      background: rgb(187, 22, 22);
+      padding: 1rem 0;
+      width: 100%;
+    }
+
+    .mobile-nav a {
+      padding: 0.75rem 1rem;
+      color: var(--foreground);
+      border-top: 1px solid #eee;
+    }
 
 @media (min-width: 640px) {
     .container {
@@ -122,7 +148,7 @@ body {
 }
 
 .header {
-    background-color: navy;
+    background-color:  #003399;
     backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--border);
     position: sticky;
@@ -210,8 +236,34 @@ body {
 }
 
 .cta-desktop {
-    display: none;
+  background: linear-gradient(135deg, rgba(0,123,255,0.9), rgba(0,212,255,0.8));
+  display: none;
+  color: white;
+  font-size: 0.9rem;  
+  padding: 0.35em 0.9em;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  font-weight: 600;
 }
+
+.cta-desktop:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  background: blue;
+}
+
+.cta-desktop:active {
+  transform: scale(0.98);
+}
+
+.jcta-desktop:focus {
+  outline: 3px solid #A5D6A7;
+  outline-offset: 2px;
+}
+
 
 @media (min-width: 768px) {
     .cta-desktop {
@@ -833,3 +885,71 @@ body {
 .gap-8 {
     gap: var(--spacing-lg);
 }
+
+
+    /* Hamburger Styles */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background: var(--foreground);
+      margin: 4px 0;
+      transition: 0.3s;
+    }
+
+    .mobile-nav {
+      display: none;
+      flex-direction: column;
+      background: white;
+      padding: 1rem 0;
+      width: 100%;
+    }
+
+    .mobile-nav a {
+      padding: 0.75rem 1rem;
+      color: var(--foreground);
+      border-top: 1px solid #eee;
+    }
+
+    /* Responsive Rules */
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      nav.nav-desktop,
+      .cta-desktop {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .mobile-nav.active {
+        display: flex;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        padding: 1rem;
+      }
+
+      .cta-content h2 {
+        font-size: 1.5rem;
+      }
+    }
