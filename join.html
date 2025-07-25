@@ -207,28 +207,22 @@ button:hover {
     </footer>
 
 <script>
-  const form = document.getElementById("joinForm");
-  form.addEventListener("submit", async function (e) {
-    e.preventDefault();
+function doPost(e) {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
 
-    const formData = new FormData(form);
-    const scriptURL = "https://script.google.com/macros/s/PASTE_YOUR_DEPLOYED_URL_HERE/exec";
+  var fullName = e.parameter.Full_Name;
+  var course = e.parameter.Course;
+  var admissionNumber = e.parameter.Admission_Number;
+  var phone = e.parameter.Phone;
+  var email = e.parameter.Email;
 
-    try {
-      const res = await fetch(scriptURL, {
-        method: "POST",
-        body: formData,
-      });
+  sheet.appendRow([fullName, course, admissionNumber, phone, email, new Date()]);
 
-      if (res.ok) {
-        window.location.href = "success.html";
-      } else {
-        document.getElementById("msg").innerText = "Submission failed. Try again.";
-      }
-    } catch (err) {
-      document.getElementById("msg").innerText = "Error submitting form.";
-    }
-  });
+  return HtmlService.createHtmlOutput(
+    "<script>window.location.href='success.html';</script>"
+  );
+}
+
 </script>
 
 
