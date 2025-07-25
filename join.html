@@ -227,19 +227,22 @@ button:hover {
     })
     .then(res => {
       if (res.ok) {
-        document.getElementById("msg").innerText = "Form submitted successfully!";
-        form.reset();
-        setTimeout(() => window.location.href = "success.html", 1000);
+        // ✅ Redirect after 1 second (you can remove delay if you want)
+        setTimeout(() => {
+          window.location.href = "success.html";
+        }, 1000);
       } else {
         throw new Error("Failed to submit");
       }
     })
     .catch(err => {
       console.error(err);
-      document.getElementById("msg").innerText = "Something went wrong.";
+      document.getElementById("msg").innerText = "Something went wrong. Please try again.";
     });
   });
 </script>
+
+
 
 
 
