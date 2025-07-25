@@ -111,23 +111,26 @@ button:hover {
   <div class="join_container">
     <h1>Join ZURI Club</h1>
     <p>Fill in your details below to become a member of the Zetech University Research and Innovation (ZURI) Club.</p>
-<form action="https://sheetdb.io/api/v1/tq6a6nv0rjktf" id="google-form" method="post">
+<form id="joinForm">
   <label>Full Name:</label>
-  <input name="entry.1359261303" type="text" required /><br /><br />
+  <input name="Full_Name" type="text" required /><br /><br />
 
   <label>Course:</label>
-  <input name="entry.474170192" type="text" required /><br /><br />
+  <input name="Course" type="text" required /><br /><br />
 
   <label>Admission Number:</label>
-  <input name="entry.1452558103" type="text" required /><br /><br />
+  <input name="Admission_Number" type="text" required /><br /><br />
 
   <label>Phone:</label>
-  <input name="entry.951499501" type="text" required /><br /><br />
+  <input name="Phone" type="text" required /><br /><br />
 
   <label>Email:</label>
-  <input name="entry.1675821230" type="email" required /><br /><br />
+  <input name="Email" type="email" required /><br /><br />
 
   <button type="submit">Submit</button>
+  <p id="msg" style="color: green;"></p>
+</form>
+
    
 
   </div>
@@ -201,56 +204,43 @@ button:hover {
             </div>
         </div>
     </footer>
- <script>
-  const form = document.getElementById("google-form");
+
+<script>
+  const form = document.getElementById("joinForm");
 
   form.addEventListener("submit", function (e) {
     e.preventDefault();
-    const formData = new FormData(form);
 
-    fetch("https://docs.google.com/forms/d/e/1FAIpQLSdTWtlPR1s2xGANR2bWFeEa7uC4fb8K-XbjkwHYhVatpfwUQA/formResponse", {
+    const formData = new FormData(form);
+    const data = {};
+
+    formData.forEach((value, key) => {
+      data[key] = value;
+    });
+
+    fetch("https://sheetdb.io/api/v1/tq6a6nv0rjktf", {
       method: "POST",
-      mode: "no-cors",
-      body: formData,
-    }).then(() => {
-      document.getElementById("msg").innerText = "Form submitted successfully!";
-      setTimeout(() => {
-        window.location.href = "success.html"; // optional
-      }, 1000);
-    }).catch(() => {
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ data: data })
+    })
+    .then(res => {
+      if (res.ok) {
+        document.getElementById("msg").innerText = "Form submitted successfully!";
+        form.reset();
+        setTimeout(() => window.location.href = "success.html", 1000);
+      } else {
+        throw new Error("Failed to submit");
+      }
+    })
+    .catch(err => {
+      console.error(err);
       document.getElementById("msg").innerText = "Something went wrong.";
     });
   });
 </script>
-  <!--
-    <script>
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbwSRfYjie9WZdO3zVLekFml3K-yBlRPYjCcxSbXrHZMa_471TzuZob-Zi8BrRJxlQUR9A/exec';
-  const form = document.getElementById('joinForm');
-  const successMsg = document.getElementById('successMsg');
-  const errorMsg = document.getElementById('errorMsg');
 
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    errorMsg.style.display = "none";
-    successMsg.style.display = "none";
-
-    fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-      .then(response => {
-        if (response.ok) {
-          successMsg.style.display = "block";
-          form.reset();
-        } else {
-          throw new Error('Something went wrong');
-        }
-      })
-      .catch(error => {
-        console.error('Error!', error.message);
-        errorMsg.textContent = "Something went wrong. Please try again.";
-        errorMsg.style.display = "block";
-      });
-  });
-</script>-
-  <script src="form-submit.js" defer></script>-->
 
 
 </body>
