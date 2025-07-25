@@ -111,7 +111,7 @@ button:hover {
   <div class="join_container">
     <h1>Join ZURI Club</h1>
     <p>Fill in your details below to become a member of the Zetech University Research and Innovation (ZURI) Club.</p>
-<form id="joinForm" action="https://sheetdb.io/api/v1/tq6a6nv0rjktf">
+<form id="joinForm">
   <label>Full Name:</label>
   <input name="Full_Name" type="text" required /><br /><br />
 
@@ -130,6 +130,7 @@ button:hover {
   <button type="submit">Submit</button>
   <p id="msg" style="color: green;"></p>
 </form>
+
 
    
 
@@ -207,38 +208,25 @@ button:hover {
 
 <script>
   const form = document.getElementById("joinForm");
-
-  form.addEventListener("submit", function (e) {
+  form.addEventListener("submit", async function (e) {
     e.preventDefault();
-
     const formData = new FormData(form);
-    const data = {};
+    const params = new URLSearchParams(formData);
 
-    formData.forEach((value, key) => {
-      data[key] = value;
-    });
+    try {
+      const response = await fetch("YOUR_WEB_APP_URL", {
+        method: "POST",
+        body: params,
+      });
 
-    fetch("https://sheetdb.io/api/v1/tq6a6nv0rjktf", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ data: data })
-    })
-    .then(res => {
-      if (res.ok) {
-        // ✅ Redirect after 1 second (you can remove delay if you want)
-        setTimeout(() => {
-          window.location.href = "success.html";
-        }, 1000);
+      if (response.ok) {
+        window.location.href = "success.html";
       } else {
-        throw new Error("Failed to submit");
+        document.getElementById("msg").innerText = "Failed to submit.";
       }
-    })
-    .catch(err => {
-      console.error(err);
-      document.getElementById("msg").innerText = "Something went wrong. Please try again.";
-    });
+    } catch (error) {
+      document.getElementById("msg").innerText = "Error: " + error;
+    }
   });
 </script>
 
