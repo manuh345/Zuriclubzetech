@@ -128,11 +128,8 @@ button:hover {
   <input name="Email" type="email" required /><br /><br />
 
   <button type="submit">Submit</button>
-  <p id="msg" style="color: green;"></p>
 </form>
-
-
-   
+  
 
   </div>
   <footer class="footer">
@@ -207,24 +204,16 @@ button:hover {
     </footer>
 
 <script>
-function doPost(e) {
-  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbx656vpCGyede_PgMlgi3iBzVYj4qRKchXAMivMF8R8p-bg5D84tppsliiWHhVy-LZHgQ/exec'; // Replace with your Apps Script Web App URL
+  const form = document.getElementById('joinForm');
 
-  var fullName = e.parameter.Full_Name;
-  var course = e.parameter.Course;
-  var admissionNumber = e.parameter.Admission_Number;
-  var phone = e.parameter.Phone;
-  var email = e.parameter.Email;
-
-  sheet.appendRow([fullName, course, admissionNumber, phone, email, new Date()]);
-
-  return HtmlService.createHtmlOutput(
-    "<script>window.location.href='success.html';</script>"
-  );
-}
-
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(() => window.location.href = "success.html")
+      .catch(error => alert('Error!', error.message));
+  });
 </script>
-
 
 
 
