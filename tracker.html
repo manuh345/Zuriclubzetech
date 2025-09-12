@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Club Meeting Tracker</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+
+    .member-card { transition: all 0.2s ease; }
+    .member-card:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .status-present { background: #10b981; }
+    .status-absent { background: #ef4444; }
+    .status-late { background: #f59e0b; }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+  <!-- Header -->
+  <header class="bg-white shadow-sm">
+    <div class="max-w-5xl mx-auto px-4 py-6">
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="text-2xl font-bold text-gray-900">Club Meeting Tracker</h1>
+          <p class="text-gray-600">Track attendance and project progress</p>
+        </div>
+        <div class="flex space-x-2">
+          <!-- Sync button -->
+          <button onclick="syncToSheets()" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors">
+            🔄 Sync
+          </button>
+          <button onclick="showAddModal()" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+            + Add Member
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="max-w-5xl mx-auto px-4 py-6">
+    <!-- Meeting Info -->
+    <div class="bg-white rounded-lg shadow-sm border p-6 mb-6">
+      <h2 class="text-lg font-semibold mb-4">Meeting Details</h2>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Meeting Date</label>
+          <input type="date" id="meetingDate" value="2025-09-09" class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-500">
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Day</label>
+          <select id="meetingDay" class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-500">
+            <option value="Monday" selected>Monday</option>
+            <option value="Tuesday">Tuesday</option>
+            <option value="Wednesday">Wednesday</option>
+            <option value="Thursday">Thursday</option>
+            <option value="Friday">Friday</option>
+            <option value="Saturday">Saturday</option>
+            <option value="Sunday">Sunday</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Start Time</label>
+          <input type="time" id="startTime" value="06:00" class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-500">
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">End Time</label>
+          <input type="time" id="endTime" value="07:50" class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-500">
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+      <div class="bg-white p-4 rounded-lg shadow-sm border text-center">
+        <div class="text-2xl font-bold text-blue-600" id="totalMembers">1</div>
+        <div class="text-sm text-gray-600">Total Members</div>
+      </div>
+      <div class="bg-white p-4 rounded-lg shadow-sm border text-center">
+        <div class="text-2xl font-bold text-green-600" id="presentCount">1</div>
+        <div class="text-sm text-gray-600">Present</div>
+      </div>
+      <div class="bg-white p-4 rounded-lg shadow-sm border text-center">
+        <div class="text-2xl font-bold text-red-600" id="absentCount">0</div>
+        <div class="text-sm text-gray-600">Absent</div>
+      </div>
+      <div class="bg-white p-4 rounded-lg shadow-sm border text-center">
+        <div class="text-2xl font-bold text-yellow-600" id="lateCount">0</div>
+        <div class="text-sm text-gray-600">Late</div>
+      </div>
+    </div>
+
+    <!-- Members List -->
+    <div class="bg-white rounded-lg shadow-sm border">
+      <div class="p-6 border-b">
+        <h2 class="text-lg font-semibold">Club Members</h2>
+      </div>
+      <div class="p-6">
+        <div id="membersList" class="space-y-4"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add/Edit Member Modal -->
+  <div id="memberModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 hidden">
+    <div class="bg-white rounded-lg shadow-xl w-full max-w-md">
+      <div class="p-6 border-b">
+        <h3 class="text-lg font-semibold" id="modalTitle">Add New Member</h3>
+      </div>
+      <div class="p-6">
+        <form id="memberForm" class="space-y-4">
+          <input type="hidden" id="memberId">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+            <input type="text" id="memberName" required class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Enter member name">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Admission Number</label>
+            <input type="text" id="memberAdmission" required class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="e.g., DIT-01-0044/2025">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Project</label>
+            <input type="text" id="memberProject" required class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="e.g., BIT">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Progress</label>
+            <textarea id="memberProgress" required class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-500 h-20 resize-none" placeholder="Describe current progress..."></textarea>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Attendance Status</label>
+            <select id="memberStatus" class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-500">
+              <option value="present">Present</option>
+              <option value="absent">Absent</option>
+              <option value="late">Late</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="p-6 border-t flex space-x-3">
+        <button onclick="hideModal()" class="flex-1 bg-gray-200 text-gray-800 py-2 rounded-lg hover:bg-gray-300 transition-colors">Cancel</button>
+        <button onclick="saveMember()" class="flex-1 bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let members = [
+      {
+        id: 1,
+        name: "Moses Tabalya",
+        admission: "DIT-01-0044/2025",
+        project: "BIT",
+        progress: "Finished designing the drones exterior",
+        status: "present"
+      }
+    ];
+    let editingId = null;
+
+    function init() { renderMembers(); updateStats(); }
+
+    function renderMembers() {
+      const membersList = document.getElementById('membersList');
+      if (members.length === 0) {
+        membersList.innerHTML = `<div class="text-center py-8">
+          <div class="text-gray-400 text-4xl mb-4">👥</div>
+          <h3 class="text-lg font-medium text-gray-900 mb-2">No members yet</h3>
+          <p class="text-gray-600 mb-4">Add your first club member to get started</p>
+          <button onclick="showAddModal()" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">Add First Member</button>
+        </div>`;
+        return;
+      }
+      membersList.innerHTML = members.map(member => `
+        <div class="member-card bg-gray-50 rounded-lg p-4 border">
+          <div class="flex items-start justify-between">
+            <div class="flex-1">
+              <div class="flex items-center space-x-3 mb-3">
+                <h3 class="text-lg font-semibold text-gray-900">${member.name}</h3>
+                <span class="status-${member.status} text-white px-2 py-1 rounded-full text-xs font-medium">
+                  ${member.status.charAt(0).toUpperCase() + member.status.slice(1)}
+                </span>
+              </div>
+              <div class="space-y-2">
+                <div class="flex items-center space-x-4">
+                  <div><span class="text-sm font-medium text-gray-700">Admission:</span>
+                    <span class="text-sm text-gray-600 ml-1">${member.admission}</span>
+                  </div>
+                  <div><span class="text-sm font-medium text-gray-700">Project:</span>
+                    <span class="text-sm text-gray-600 ml-1">${member.project}</span>
+                  </div>
+                </div>
+                <div>
+                  <span class="text-sm font-medium text-gray-700">Progress:</span>
+                  <p class="text-sm text-gray-600 mt-1">${member.progress}</p>
+                </div>
+              </div>
+            </div>
+            <div class="flex space-x-2 ml-4">
+              <button onclick="editMember(${member.id})" class="text-blue-600 hover:text-blue-800 p-1 rounded hover:bg-blue-50 transition-colors">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                                </svg>
+                            </button>
+                            <button onclick="deleteMember(${member.id})" class="text-red-600 hover:text-red-800 p-1 rounded hover:bg-red-50 transition-colors">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                </svg>
+                            </button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function updateStats() {
+      document.getElementById('totalMembers').textContent = members.length;
+      document.getElementById('presentCount').textContent = members.filter(m => m.status === 'present').length;
+      document.getElementById('absentCount').textContent = members.filter(m => m.status === 'absent').length;
+      document.getElementById('lateCount').textContent = members.filter(m => m.status === 'late').length;
+    }
+
+    function showAddModal() {
+      editingId = null;
+      document.getElementById('modalTitle').textContent = 'Add New Member';
+      document.getElementById('memberForm').reset();
+      document.getElementById('memberModal').classList.remove('hidden');
+    }
+
+    function editMember(id) {
+      const m = members.find(x => x.id === id);
+      if (!m) return;
+      editingId = id;
+      document.getElementById('modalTitle').textContent = 'Edit Member';
+      document.getElementById('memberId').value = m.id;
+      document.getElementById('memberName').value = m.name;
+      document.getElementById('memberAdmission').value = m.admission;
+      document.getElementById('memberProject').value = m.project;
+      document.getElementById('memberProgress').value = m.progress;
+      document.getElementById('memberStatus').value = m.status;
+      document.getElementById('memberModal').classList.remove('hidden');
+    }
+
+    function hideModal() {
+      document.getElementById('memberModal').classList.add('hidden');
+      editingId = null;
+    }
+
+    function saveMember() {
+      const name = document.getElementById('memberName').value.trim();
+      const admission = document.getElementById('memberAdmission').value.trim();
+      const project = document.getElementById('memberProject').value.trim();
+      const progress = document.getElementById('memberProgress').value.trim();
+      const status = document.getElementById('memberStatus').value;
+      if (!name || !admission || !project || !progress) {
+        alert('Please fill in all fields'); return;
+      }
+      if (editingId) {
+        const idx = members.findIndex(m => m.id === editingId);
+        if (idx !== -1) members[idx] = { ...members[idx], name, admission, project, progress, status };
+      } else {
+        members.push({ id: Date.now(), name, admission, project, progress, status });
+      }
+      renderMembers(); updateStats(); hideModal();
+      syncToSheets(); // auto sync
+    }
+
+    function deleteMember(id) {
+      if (confirm('Are you sure you want to remove this member?')) {
+        members = members.filter(m => m.id !== id);
+        renderMembers(); updateStats();
+      }
+    }
+
+    function syncToSheets() {
+      const last = members[members.length - 1];
+      if (!last) return;
+      fetch("https://script.google.com/macros/s/AKfycbyvNmgUCa4k3Wk_hPYgG0mplnkZNpWBhQo7t1UDjMuQVvSV9YEMYgaB7tgE96E1Yg0L2w/exec", {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(last)
+      }).then(() => console.log("✅ Synced")).catch(err => console.error("❌ Error:", err));
+    }
+
+    document.addEventListener('click', e => { if (e.target.id === 'memberModal') hideModal(); });
+    init();
+  </script>
+</body>
+</html>
