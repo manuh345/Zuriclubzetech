@@ -276,19 +276,44 @@
       }
     }
 
-    function syncToSheets() {
-      const last = members[members.length - 1];
-      if (!last) return;
-      fetch("https://script.google.com/macros/s/AKfycbyvNmgUCa4k3Wk_hPYgG0mplnkZNpWBhQo7t1UDjMuQVvSV9YEMYgaB7tgE96E1Yg0L2w/exec", {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(last)
-      }).then(() => console.log("✅ Synced")).catch(err => console.error("❌ Error:", err));
-    }
-
-    document.addEventListener('click', e => { if (e.target.id === 'memberModal') hideModal(); });
-    init();
+    
   </script>
+  <script>
+  let members = [
+    {
+      id: 1,
+      name: "Moses Tabalya",
+      admission: "DIT-01-0044/2025",
+      project: "BIT",
+      progress: "Finished designing the drones exterior",
+      status: "present"
+    }
+  ];
+  let editingId = null;
+
+  function init() { renderMembers(); updateStats(); }
+
+  // ... [all your existing functions unchanged: renderMembers, updateStats, showAddModal, editMember, hideModal, saveMember, deleteMember]
+
+  // 🔄 Sync function corrected
+  function syncToSheets() {
+    const last = members[members.length - 1];
+    if (!last) return;
+
+    fetch("https://script.google.com/macros/s/AKfycbxzm7DZDwZu56ou4fRaYS3sziP_tLCM57L-EEO21_RzDjMxQdZ2SRd3gHG5AU9Unsb6eQ/exec", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(last)
+    })
+    .then(res => res.text())
+    .then(msg => console.log("✅ Synced:", msg))
+    .catch(err => console.error("❌ Error:", err));
+  }
+
+  document.addEventListener('click', e => { if (e.target.id === 'memberModal') hideModal(); });
+  init();
+</script>
+
 </body>
 </html>
+
