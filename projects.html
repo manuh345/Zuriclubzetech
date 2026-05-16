@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ZURI Project Showcase — innovative student-built solutions from Zetech University." />
+  <title>Projects — ZURI Innovation Club</title>
+  <link rel="icon" href="img/zuri_logo.png" type="image/png" />
+  <link rel="stylesheet" href="css/main.css" />
+  <style>
+    .project-card {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .project-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .project-identity { display: flex; align-items: center; gap: 14px; }
+
+    .project-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius);
+      background: var(--grad-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .project-name {
+      font-family: var(--font-display);
+      font-size: 1.0625rem;
+      font-weight: 700;
+      color: var(--slate-900);
+      margin-bottom: 4px;
+    }
+
+    .project-stats {
+      display: flex;
+      gap: 16px;
+      flex-shrink: 0;
+    }
+
+    .project-stat {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.8125rem;
+      color: var(--slate-500);
+    }
+
+    .project-stat svg {
+      width: 13px;
+      height: 13px;
+      stroke: var(--slate-500);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .project-desc {
+      font-size: 0.9rem;
+      color: var(--slate-500);
+      line-height: 1.65;
+    }
+
+    .project-meta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .tech-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+    .tech-tag {
+      padding: 3px 10px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--slate-900);
+    }
+
+    .project-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+    .impact-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #E8F5E9;
+      color: #2E7D32;
+      border-radius: 100px;
+      padding: 4px 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .impact-pill svg {
+      width: 13px;
+      height: 13px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .search-filter-row {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 36px;
+    }
+
+    .search-wrap {
+      position: relative;
+      flex: 1;
+      min-width: 220px;
+      max-width: 360px;
+    }
+
+    .search-wrap svg {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      stroke: var(--slate-500);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 11px 14px 11px 42px;
+      border: 1.5px solid var(--border-strong);
+      border-radius: var(--radius);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      background: var(--white);
+      color: var(--slate-900);
+      outline: none;
+      transition: var(--transition);
+    }
+
+    .search-input:focus {
+      border-color: var(--indigo-600);
+      box-shadow: 0 0 0 3px rgba(0,56,168,0.1);
+    }
+  </style>
+</head>
+<body>
+
+    <nav class="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+          <img src="img/zuri_logo.png" alt="ZURI Logo" />
+          <div>
+            <span class="nav-logo-text">ZURI</span>
+            <span class="nav-logo-sub">Innovation Club</span>
+          </div>
+        </a>
+        <div class="nav-links">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="programs.html" class="nav-link">Programs</a>
+          <a href="projects.html" class="nav-link">Projects</a>
+          <a href="events.html" class="nav-link">Events</a>
+          <a href="resources.html" class="nav-link">Resources</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+        <div class="nav-actions">
+          <a href="join.html" class="btn btn-primary">Join ZURI</a>
+          <button class="hamburger" aria-label="Open menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="mobile-nav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="programs.html">Programs</a>
+      <a href="projects.html">Projects</a>
+      <a href="events.html">Events</a>
+      <a href="resources.html">Resources</a>
+      <a href="contact.html">Contact</a>
+      <a href="join.html">Join ZURI</a>
+    </div>
+  </nav>
+
+
+  <main>
+
+    <div class="page-hero">
+      <div class="page-hero-orb" style="width:400px;height:400px;background:rgba(99,102,241,0.2);top:-100px;right:-50px;"></div>
+      <div class="page-hero-orb" style="width:280px;height:280px;background:rgba(124,58,237,0.15);bottom:-80px;left:-40px;"></div>
+      <div class="container">
+        <div class="eyebrow">Project Showcase</div>
+        <h1 class="display-xl" style="color:var(--white);">Ideas turned into <span class="gradient-text">solutions</span></h1>
+        <p>Discover what ZURI members are building — from health tech to climate solutions, from AI to social innovation.</p>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container">
+
+        <!-- Search + Filter -->
+        <div class="search-filter-row">
+          <div class="search-wrap">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <input class="search-input" id="projectSearch" type="text" placeholder="Search projects…" aria-label="Search projects" />
+          </div>
+          <div class="filter-tabs" data-filter-group="projects">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="health-tech">Health Tech</button>
+            <button class="filter-btn" data-filter="ai-data">AI & Data</button>
+            <button class="filter-btn" data-filter="sustainable">Sustainable</button>
+            <button class="filter-btn" data-filter="social">Social</button>
+            <button class="filter-btn" data-filter="web-dev">Web Dev</button>
+          </div>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="grid grid-2" id="projectsGrid">
+
+          <div class="card project-card" data-filter-target="projects" data-category="health-tech" data-reveal data-delay="0">
+            <div class="project-card-header">
+              <div class="project-identity">
+                <div class="project-avatar">HC</div>
+                <div>
+                  <div class="project-name">HealthConnect Kenya</div>
+                  <div class="flex-center gap-8">
+                    <span class="badge badge-blue">Health Tech</span>
+                    <span class="status status-live">Live</span>
+                  </div>
+                </div>
+              </div>
+              <div class="project-stats">
+                <div class="project-stat">
+                  <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                  1,240
+                </div>
+                <div class="project-stat">
+                  <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+                  89
+                </div>
+              </div>
+            </div>
+            <p class="project-desc">A comprehensive telemedicine platform connecting rural patients with healthcare providers across Kenya. Features video consultations, medical record management, and prescription delivery.</p>
+            <div>
+              <div class="body-sm text-muted" style="margin-bottom:8px; font-weight:500;">Team</div>
+              <div class="body-sm text-muted">Sarah Kimani, David Mwangi, Grace Achieng</div>
+            </div>
+            <div>
+              <div class="body-sm text-muted" style="margin-bottom:8px; font-weight:500;">Stack</div>
+              <div class="tech-tags">
+                <span class="tech-tag">React</span>
+                <span class="tech-tag">Node.js</span>
+                <span class="tech-tag">MongoDB</span>
+                <span class="tech-tag">WebRTC</span>
+              </div>
+            </div>
+            <div class="project-meta-row">
+              <div class="impact-pill">
+                <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                500+ patients served
+              </div>
+              <div class="project-actions">
+                <a href="#" class="btn btn-ghost btn-sm">GitHub</a>
+                <a href="#" class="btn btn-primary btn-sm">Demo</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="card project-card" data-filter-target="projects" data-category="ai-data" data-reveal data-delay="80">
+            <div class="project-card-header">
+              <div class="project-identity">
+                <div class="project-avatar" style="background:linear-gradient(135deg,#5C6BC0,#42A5F5);">AS</div>
+                <div>
+                  <div class="project-name">AgriSmart AI</div>
+                  <div class="flex-center gap-8">
+                    <span class="badge badge-purple">AI & Data</span>
+                    <span class="status status-beta">Beta</span>
+                  </div>
+                </div>
+              </div>
+              <div class="project-stats">
+                <div class="project-stat"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>980</div>
+                <div class="project-stat"><svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>76</div>
+              </div>
+            </div>
+            <p class="project-desc">Machine learning platform that analyzes soil conditions, weather patterns, and crop data to provide intelligent farming recommendations to smallholder farmers.</p>
+            <div>
+              <div class="body-sm text-muted" style="margin-bottom:8px; font-weight:500;">Team</div>
+              <div class="body-sm text-muted">Michael Ochieng, Faith Wanjiku, James Kiprotich</div>
+            </div>
+            <div>
+              <div class="body-sm text-muted" style="margin-bottom:8px; font-weight:500;">Stack</div>
+              <div class="tech-tags">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">TensorFlow</span>
+                <span class="tech-tag">React Native</span>
+                <span class="tech-tag">IoT Sensors</span>
+              </div>
+            </div>
+            <div class="project-meta-row">
+              <div class="impact-pill"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>200+ farmers in beta</div>
+              <div class="project-actions">
+                <a href="#" class="btn btn-ghost btn-sm">GitHub</a>
+                <a href="#" class="btn btn-primary btn-sm">Demo</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="card project-card" data-filter-target="projects" data-category="sustainable" data-reveal data-delay="0">
+            <div class="project-card-header">
+              <div class="project-identity">
+                <div class="project-avatar" style="background:linear-gradient(135deg,#43A047,#00BCD4);">EW</div>
+                <div>
+                  <div class="project-name">EcoWaste Manager</div>
+                  <div class="flex-center gap-8">
+                    <span class="badge badge-green">Sustainable</span>
+                    <span class="status status-prototype">Prototype</span>
+                  </div>
+                </div>
+              </div>
+              <div class="project-stats">
+                <div class="project-stat"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>720</div>
+                <div class="project-stat"><svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>54</div>
+              </div>
+            </div>
+            <p class="project-desc">Smart waste management system using IoT sensors and a mobile app to optimize collection routes and reduce carbon footprint in urban areas.</p>
+            <div>
+              <div class="body-sm text-muted" style="margin-bottom:8px; font-weight:500;">Stack</div>
+              <div class="tech-tags"><span class="tech-tag">Flutter</span><span class="tech-tag">Arduino</span><span class="tech-tag">Firebase</span></div>
+            </div>
+            <div class="project-meta-row">
+              <div class="impact-pill"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Pilot in Ruiru</div>
+              <div class="project-actions">
+                <a href="#" class="btn btn-ghost btn-sm">GitHub</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="card project-card" data-filter-target="projects" data-category="social" data-reveal data-delay="80">
+            <div class="project-card-header">
+              <div class="project-identity">
+                <div class="project-avatar" style="background:linear-gradient(135deg,#FB8C00,#FFD600);">EB</div>
+                <div>
+                  <div class="project-name">EduBridge Platform</div>
+                  <div class="flex-center gap-8">
+                    <span class="badge badge-orange">Social</span>
+                    <span class="status status-live">Live</span>
+                  </div>
+                </div>
+              </div>
+              <div class="project-stats">
+                <div class="project-stat"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>890</div>
+                <div class="project-stat"><svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>67</div>
+              </div>
+            </div>
+            <p class="project-desc">Educational platform connecting university students with high school students for mentorship, exam preparation support, and career guidance.</p>
+            <div>
+              <div class="body-sm text-muted" style="margin-bottom:8px; font-weight:500;">Stack</div>
+              <div class="tech-tags"><span class="tech-tag">Next.js</span><span class="tech-tag">Supabase</span><span class="tech-tag">Tailwind</span></div>
+            </div>
+            <div class="project-meta-row">
+              <div class="impact-pill"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>300+ students mentored</div>
+              <div class="project-actions">
+                <a href="#" class="btn btn-ghost btn-sm">GitHub</a>
+                <a href="#" class="btn btn-primary btn-sm">Demo</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="card project-card" data-filter-target="projects" data-category="ai-data" data-reveal data-delay="0">
+            <div class="project-card-header">
+              <div class="project-identity">
+                <div class="project-avatar" style="background:linear-gradient(135deg,#5C6BC0,#42A5F5);">FW</div>
+                <div>
+                  <div class="project-name">FinTech Wallet</div>
+                  <div class="flex-center gap-8">
+                    <span class="badge badge-purple">AI & Data</span>
+                    <span class="status status-dev">Development</span>
+                  </div>
+                </div>
+              </div>
+              <div class="project-stats">
+                <div class="project-stat"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>560</div>
+                <div class="project-stat"><svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>43</div>
+              </div>
+            </div>
+            <p class="project-desc">Mobile money solution for small businesses featuring inventory management, sales analytics, and micro-lending capabilities built for the Kenyan market.</p>
+            <div>
+              <div class="body-sm text-muted" style="margin-bottom:8px; font-weight:500;">Stack</div>
+              <div class="tech-tags"><span class="tech-tag">React Native</span><span class="tech-tag">Django</span><span class="tech-tag">M-Pesa API</span></div>
+            </div>
+            <div class="project-meta-row">
+              <div style="font-size:0.8125rem; color:var(--slate-500);">In active development</div>
+              <div class="project-actions"><a href="#" class="btn btn-ghost btn-sm">GitHub</a></div>
+            </div>
+          </div>
+
+          <div class="card project-card" data-filter-target="projects" data-category="sustainable" data-reveal data-delay="80">
+            <div class="project-card-header">
+              <div class="project-identity">
+                <div class="project-avatar" style="background:linear-gradient(135deg,#43A047,#00BCD4);">CA</div>
+                <div>
+                  <div class="project-name">Climate Action Tracker</div>
+                  <div class="flex-center gap-8">
+                    <span class="badge badge-green">Sustainable</span>
+                    <span class="status status-live">Live</span>
+                  </div>
+                </div>
+              </div>
+              <div class="project-stats">
+                <div class="project-stat"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>780</div>
+                <div class="project-stat"><svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>61</div>
+              </div>
+            </div>
+            <p class="project-desc">Web platform for tracking environmental conservation efforts with gamification elements — turning sustainability into a community challenge.</p>
+            <div>
+              <div class="body-sm text-muted" style="margin-bottom:8px; font-weight:500;">Stack</div>
+              <div class="tech-tags"><span class="tech-tag">Vue.js</span><span class="tech-tag">Laravel</span><span class="tech-tag">MySQL</span></div>
+            </div>
+            <div class="project-meta-row">
+              <div class="impact-pill"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>1,200 tree-planting actions tracked</div>
+              <div class="project-actions">
+                <a href="#" class="btn btn-ghost btn-sm">GitHub</a>
+                <a href="#" class="btn btn-primary btn-sm">Demo</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div id="noResults" class="hidden" style="text-align:center; padding:48px; color:var(--slate-500);">
+          <p>No projects match your search.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- COMMUNITY STATS -->
+    <div class="stats-bar">
+      <div class="container">
+        <div class="stats-bar-inner">
+          <div class="stat-item"><div class="stat-number">45+</div><div class="stat-label">Projects Built</div></div>
+          <div class="stat-item"><div class="stat-number">12</div><div class="stat-label">Awards Won</div></div>
+          <div class="stat-item"><div class="stat-number">1K+</div><div class="stat-label">Lives Impacted</div></div>
+          <div class="stat-item"><div class="stat-number">150+</div><div class="stat-label">Active Members</div></div>
+        </div>
+      </div>
+    </div>
+
+    <section class="cta-section">
+      <div class="container">
+        <div data-reveal>
+          <h2 class="display-lg">Have a project idea?</h2>
+          <p class="body-lg">Bring it to ZURI. You'll get teammates, mentorship, and the resources to build it.</p>
+          <div class="cta-actions">
+            <a href="join.html" class="btn btn-white btn-lg">Start Building</a>
+            <a href="programs.html" class="btn btn-outline-white btn-lg">View Programs</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo" style="margin-bottom:16px;">
+            <img src="img/zuri_logo.png" alt="ZURI Logo" style="width:40px;height:40px;" />
+            <div>
+              <span class="nav-logo-text">ZURI</span>
+              <span class="nav-logo-sub">Innovation Club</span>
+            </div>
+          </a>
+          <p class="footer-desc">Zetech University Research and Innovation Club — empowering students to innovate, collaborate, and transform ideas into impactful solutions.</p>
+          <p class="footer-tagline">"Innovate. Collaborate. Transform."</p>
+          <div class="footer-socials">
+            <a href="#" class="social-btn" aria-label="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="#" class="social-btn" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="#" class="social-btn" aria-label="Instagram">
+              <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="programs.html">Programs</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="join.html">Join ZURI</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <div class="footer-contact">
+            <div class="footer-contact-item">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              zuri@zetech.ac.ke
+            </div>
+            <div class="footer-contact-item">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Zetech University, Ruiru, Kenya
+            </div>
+            <div class="footer-contact-item">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Mon – Fri: 8:00 AM – 5:00 PM
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 ZURI — Zetech University Research and Innovation Club.</p>
+        <p>Built with ♥ by <a href="about.html">ZURI members</a></p>
+      </div>
+    </div>
+  </footer>
+
+    <script src="js/app.js"></script>
+  <script>
+    const search = document.getElementById('projectSearch');
+    const grid = document.getElementById('projectsGrid');
+    const noResults = document.getElementById('noResults');
+
+    search.addEventListener('input', () => {
+      const q = search.value.toLowerCase();
+      let visible = 0;
+
+      grid.querySelectorAll('.project-card').forEach(card => {
+        const text = card.textContent.toLowerCase();
+        const show = text.includes(q);
+        card.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+
+      noResults.classList.toggle('hidden', visible > 0);
+    });
+  </script>
+</body>
+</html>
