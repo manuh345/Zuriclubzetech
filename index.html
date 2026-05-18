@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ZURI – Zetech University Research and Innovation Club. Where brilliant minds unite to innovate, collaborate, and transform ideas into impact." />
+  <title>ZURI - Zetech University Research & Innovation Club</title>
+  <link rel="icon" href="img/zuri_logo.png" type="image/png" />
+  <link rel="stylesheet" href="css/main.css" />
+  <style>
+    /* HOME-SPECIFIC */
+    .hero {
+      position: relative;
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: var(--grad-hero);
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('img/zetech_uni.jpg');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.12;
+    }
+    .hero-mesh {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 15% 60%, rgba(99,102,241,0.22) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 20%, rgba(124,58,237,0.18) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 90%, rgba(79,70,229,0.15) 0%, transparent 45%);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      padding: 80px 0;
+    }
+    .hero-text .eyebrow { margin-bottom: 28px; }
+    .hero-text h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.75rem, 5.5vw, 4.75rem);
+      font-weight: 800;
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      color: var(--white);
+      margin-bottom: 22px;
+    }
+    .hero-text p {
+      font-size: 1.125rem;
+      color: rgba(255,255,255,0.62);
+      line-height: 1.75;
+      max-width: 470px;
+      margin-bottom: 40px;
+    }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .hero-visual { position: relative; display: flex; justify-content: center; }
+    .hero-img-wrap { position: relative; width: 100%; max-width: 460px; }
+    .hero-img-wrap img {
+      width: 100%;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 32px 80px rgba(0,0,0,0.5), 0 0 60px rgba(99,102,241,0.2);
+    }
+    .hero-badge {
+      position: absolute;
+      background: rgba(255,255,255,0.07);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 16px;
+      padding: 14px 20px;
+      color: var(--white);
+    }
+    .hero-badge-members { bottom: -20px; left: -32px; }
+    .hero-badge-founded { top: -16px; right: -24px; }
+    .hero-badge .badge-num {
+      font-family: var(--font-display);
+      font-size: 1.625rem;
+      font-weight: 800;
+      color: var(--indigo-300);
+      line-height: 1;
+    }
+    .hero-badge .badge-lbl { font-size: 0.75rem; color: rgba(255,255,255,0.55); margin-top: 3px; }
+    .hero-scroll {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255,255,255,0.3);
+      font-size: 0.6875rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      animation: bounce 2s infinite;
+      z-index: 3;
+    }
+    .hero-scroll svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; }
+    @media (max-width: 1024px) { .hero-content { gap: 40px; } }
+    @media (max-width: 768px) {
+      .hero-content { grid-template-columns: 1fr; text-align: center; padding: 64px 0 80px; }
+      .hero-text p { margin: 0 auto 36px; }
+      .hero-actions { justify-content: center; }
+      .hero-visual { display: none; }
+    }
+
+    /* MISSION/VISION */
+    .mv-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: var(--border);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+    }
+    .mv-item { background: var(--white); padding: 48px 40px; }
+    .mv-icon {
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+    }
+    .mv-icon svg { width: 24px; height: 24px; stroke: white; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .mv-icon-indigo { background: var(--grad-primary); }
+    .mv-icon-dark { background: var(--indigo-900); }
+    @media (max-width: 640px) { .mv-grid { grid-template-columns: 1fr; } }
+
+    /* VALUES */
+    .value-card { border-radius: var(--radius-xl); padding: 36px 28px; text-align: center; }
+    .value-icon-wrap {
+      width: 72px; height: 72px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+    }
+    .value-icon-wrap img { width: 40px; height: 40px; object-fit: contain; }
+
+    /* EVENT BANNER */
+    .event-banner {
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: var(--indigo-900);
+      box-shadow: var(--shadow-xl);
+    }
+    .event-banner-img { height: 340px; object-fit: cover; width: 100%; }
+    .event-banner-body { padding: 48px 44px; display: flex; flex-direction: column; justify-content: center; gap: 16px; }
+    @media (max-width: 768px) {
+      .event-banner { grid-template-columns: 1fr; }
+      .event-banner-img { height: 220px; }
+      .event-banner-body { padding: 32px 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+          <img src="img/zuri_logo.png" alt="ZURI Logo" />
+          <div>
+            <span class="nav-logo-text">Zetech University</span>
+            <span class="nav-logo-sub">Research & Innovation Club</span>
+          </div>
+        </a>
+        <div class="nav-links">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="programs.html" class="nav-link">Programs</a>
+          <a href="projects.html" class="nav-link">Projects</a>
+          <a href="events.html" class="nav-link">Events</a>
+          <a href="resources.html" class="nav-link">Resources</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+        <div class="nav-actions">
+          <a href="join.html" class="btn btn-primary">Join ZURI</a>
+          <button class="hamburger" aria-label="Open menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="mobile-nav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="programs.html">Programs</a>
+      <a href="projects.html">Projects</a>
+      <a href="events.html">Events</a>
+      <a href="resources.html">Resources</a>
+      <a href="contact.html">Contact</a>
+      <a href="join.html">Join ZURI</a>
+    </div>
+  </nav>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-mesh"></div>
+      <div class="container" style="width:100%;">
+        <div class="hero-content">
+          <div class="hero-text">
+            <div class="eyebrow">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              Zetech University
+            </div>
+            <h1>Innovate.<br>Collaborate.<br><span class="gradient-text">Transform.</span></h1>
+            <p>ZURI is Zetech University's premier student research and innovation club - where ambitious minds build real solutions to real problems.</p>
+            <div class="hero-actions">
+              <a href="join.html" class="btn btn-primary btn-lg">
+                Become a Member
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+              <a href="projects.html" class="btn btn-outline-white btn-lg">View Projects</a>
+            </div>
+          </div>
+          <div class="hero-visual">
+            <div class="hero-img-wrap">
+              <img src="img/innovationday.jpeg" alt="ZURI Innovation Day" />
+              <div class="hero-badge hero-badge-members">
+                <div class="badge-num">100+</div>
+                <div class="badge-lbl">Active Members</div>
+              </div>
+              <div class="hero-badge hero-badge-founded">
+                <div class="badge-num">2022</div>
+                <div class="badge-lbl">Est. at Zetech</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-scroll">
+        Scroll
+        <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <div class="stats-bar">
+      <div class="container">
+        <div class="stats-bar-inner">
+          <div class="stat-item" data-reveal data-delay="0">
+            <div class="stat-number">100+</div>
+            <div class="stat-label">Active Members</div>
+          </div>
+          <div class="stat-item" data-reveal data-delay="100">
+            <div class="stat-number">45+</div>
+            <div class="stat-label">Projects Built</div>
+          </div>
+          <div class="stat-item" data-reveal data-delay="200">
+            <div class="stat-number">15+</div>
+            <div class="stat-label">Research Topics</div>
+          </div>
+          <div class="stat-item" data-reveal data-delay="300">
+            <div class="stat-number">1K+</div>
+            <div class="stat-label">Lives Impacted</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MISSION / VISION -->
+    <section class="section section-muted">
+      <div class="container">
+        <div class="section-header center" data-reveal>
+          <div class="eyebrow">Our Purpose</div>
+          <h2 class="display-lg">Driving innovation at<br>Zetech University</h2>
+          <p>Two pillars that guide everything we do.</p>
+        </div>
+        <div class="mv-grid" data-reveal>
+          <div class="mv-item">
+            <div class="mv-icon mv-icon-indigo">
+              <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <h3 class="display-md" style="margin-bottom:12px; color:var(--slate-900);">Our Mission</h3>
+            <p class="body-lg">To foster a culture of innovation and research excellence among students, providing platforms for collaborative learning, creative problem-solving, and development of solutions that address real-world challenges.</p>
+          </div>
+          <div class="mv-item">
+            <div class="mv-icon mv-icon-dark">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </div>
+            <h3 class="display-md" style="margin-bottom:12px; color:var(--slate-900);">Our Vision</h3>
+            <p class="body-lg">To be the leading student innovation hub in East Africa, producing world-class researchers and innovators who drive technological advancement and contribute to sustainable development goals.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VALUES -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header center" data-reveal>
+          <div class="eyebrow">Core Values</div>
+          <h2 class="display-lg">What we stand for</h2>
+          <p>The principles that shape every project, program, and partnership.</p>
+        </div>
+        <div class="grid grid-3">
+          <div class="card value-card" data-reveal data-delay="0">
+            <div class="value-icon-wrap" style="background:var(--indigo-50);">
+              <img src="img/innovation.png" alt="Innovation" />
+            </div>
+            <h3 class="heading" style="margin-bottom:10px;">Innovation</h3>
+            <p class="body-sm">We encourage creative thinking and breakthrough solutions to complex problems, pushing past convention to build what hasn't been built yet.</p>
+          </div>
+          <div class="card value-card" data-reveal data-delay="100">
+            <div class="value-icon-wrap" style="background:#f0fdf4;">
+              <img src="img/collaborate.png" alt="Collaboration" />
+            </div>
+            <h3 class="heading" style="margin-bottom:10px;">Collaboration</h3>
+            <p class="body-sm">We build strong partnerships and foster teamwork across disciplines, because the best solutions emerge when diverse minds work together.</p>
+          </div>
+          <div class="card value-card" data-reveal data-delay="200">
+            <div class="value-icon-wrap" style="background:#fff7ed;">
+              <img src="img/inpact.png" alt="Impact" />
+            </div>
+            <h3 class="heading" style="margin-bottom:10px;">Impact</h3>
+            <p class="body-sm">We create meaningful solutions that benefit society and drive positive change, measuring success by the lives we improve.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED EVENT -->
+    <section class="section section-muted">
+      <div class="container">
+        <div class="section-header" data-reveal>
+          <div class="eyebrow">Featured Event</div>
+          <h2 class="display-lg">Coming up at ZURI</h2>
+        </div>
+        <div class="event-banner" data-reveal>
+          <img src="img/innovationday.jpeg" alt="Innovation Day 2026" class="event-banner-img" />
+          <div class="event-banner-body">
+            <div><span class="badge badge-indigo">Upcoming</span></div>
+            <h3 class="display-md" style="color:var(--white);">Innovation Day 2026</h3>
+            <p style="color:rgba(255,255,255,0.6); font-size:0.9375rem; line-height:1.75;">A day of pitch competitions, exhibitions, and networking to celebrate student-led innovations at Zetech University. Showcase your project, connect with mentors, and win.</p>
+            <div class="flex-center gap-16" style="flex-wrap:wrap;">
+              <div class="flex-center gap-8" style="color:rgba(255,255,255,0.5); font-size:0.875rem;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                _
+              </div>
+              <div class="flex-center gap-8" style="color:rgba(255,255,255,0.5); font-size:0.875rem;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                _
+              </div>
+            </div>
+            <div style="margin-top:8px;">
+              <a href="https://forms.gle/xQQoFuVqehVswU1s7" target="_blank" rel="noopener" class="btn btn-primary">Register Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- JOIN CTA -->
+    <section class="cta-section">
+      <div class="cta-orb-1"></div>
+      <div class="cta-orb-2"></div>
+      <div class="container">
+        <div data-reveal>
+          <div class="eyebrow" style="background:rgba(255,255,255,0.1); color:var(--indigo-300); border-color:rgba(255,255,255,0.12); margin-bottom:20px; display:inline-flex;">Ready to build?</div>
+          <h2 class="display-lg">Join a community of<br>innovators and builders.</h2>
+          <p>Your ideas deserve a platform. ZURI connects you with mentors, teammates, resources, and real opportunities to create impact.</p>
+          <div class="cta-actions">
+            <a href="join.html" class="btn btn-white btn-lg">Become a Member</a>
+            <a href="about.html" class="btn btn-outline-white btn-lg">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo" style="margin-bottom:16px;">
+            <img src="img/zuri_logo.png" alt="ZURI Logo" style="width:40px;height:40px;" />
+            <div>
+              <span class="nav-logo-text">ZURI</span>
+              <span class="nav-logo-sub">Innovation Club</span>
+            </div>
+          </a>
+          <p class="footer-desc">Zetech University Research and Innovation Club, empowering students to innovate, collaborate, and transform ideas into impactful solutions.</p>
+          <p class="footer-tagline">"Innovate. Collaborate. Transform."</p>
+          <div class="footer-socials">
+            <a href="#" class="social-btn" aria-label="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="#" class="social-btn" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="#" class="social-btn" aria-label="Instagram">
+              <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="programs.html">Programs</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="join.html">Join ZURI</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <div class="footer-contact">
+            <div class="footer-contact-item">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              zuri@zetech.ac.ke
+            </div>
+            <div class="footer-contact-item">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Zetech University, Ruiru, Kenya
+            </div>
+            <div class="footer-contact-item">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Mon – Fri: 8:00 AM – 5:00 PM
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 ZURI - Zetech University Research and Innovation Club.</p>
+        <p>Built with ♥ by <a href="about.html">ZURI members</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

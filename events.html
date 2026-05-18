@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ZURI Events - hackathons, workshops, showcases and more at Zetech University." />
+  <title>Events - ZURI Innovation Club</title>
+  <link rel="icon" href="img/zuri_logo.png" type="image/png" />
+  <link rel="stylesheet" href="css/main.css" />
+  <style>
+    .event-card {
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .event-img-wrap {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .event-img-wrap img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: transform 0.4s var(--ease);
+    }
+
+    .event-card:hover .event-img-wrap img {
+      transform: scale(1.04);
+    }
+
+    .event-img-placeholder {
+      width: 100%;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .event-img-placeholder svg {
+      width: 40px;
+      height: 40px;
+      stroke: rgba(255,255,255,0.5);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .event-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex: 1;
+    }
+
+    .event-type-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .event-title {
+      font-family: var(--font-display);
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--slate-900);
+      line-height: 1.3;
+    }
+
+    .event-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .event-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8375rem;
+      color: var(--slate-500);
+    }
+
+    .event-meta-item svg {
+      width: 14px;
+      height: 14px;
+      stroke: var(--slate-500);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+    }
+
+    .event-desc {
+      font-size: 0.9rem;
+      color: var(--slate-500);
+      line-height: 1.65;
+    }
+
+    .event-footer {
+      margin-top: auto;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .event-status-open {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: #2E7D32;
+    }
+
+    .event-status-open::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #4CAF50;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .past-event-card {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .past-event-date-box {
+      width: 56px;
+      flex-shrink: 0;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      text-align: center;
+      padding: 10px 8px;
+    }
+
+    .past-event-date-box .month {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--indigo-600);
+    }
+
+    .past-event-date-box .day {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--slate-900);
+      line-height: 1;
+    }
+
+    .past-event-content h4 {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: var(--slate-900);
+    }
+
+    .past-event-content p {
+      font-size: 0.875rem;
+      color: var(--slate-500);
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+    <nav class="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+          <img src="img/zuri_logo.png" alt="ZURI Logo" />
+          <div>
+            <span class="nav-logo-text">Zetech University</span>
+            <span class="nav-logo-sub">Research & Innovation Club</span>
+          </div>
+        </a>
+        <div class="nav-links">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="programs.html" class="nav-link">Programs</a>
+          <a href="projects.html" class="nav-link">Projects</a>
+          <a href="events.html" class="nav-link">Events</a>
+          <a href="resources.html" class="nav-link">Resources</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+        <div class="nav-actions">
+          <a href="join.html" class="btn btn-primary">Join ZURI</a>
+          <button class="hamburger" aria-label="Open menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="mobile-nav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="programs.html">Programs</a>
+      <a href="projects.html">Projects</a>
+      <a href="events.html">Events</a>
+      <a href="resources.html">Resources</a>
+      <a href="contact.html">Contact</a>
+      <a href="join.html">Join ZURI</a>
+    </div>
+  </nav>
+
+
+  <main>
+
+    <div class="page-hero">
+      <div class="page-hero-orb" style="width:400px;height:400px;background:rgba(99,102,241,0.2);top:-100px;right:-50px;"></div>
+      <div class="page-hero-orb" style="width:280px;height:280px;background:rgba(124,58,237,0.15);bottom:-80px;left:-40px;"></div>
+      <div class="container">
+        <div class="eyebrow">Events & Workshops</div>
+        <h1 class="display-xl" style="color:var(--white);">Where innovation <span class="gradient-text">happens</span></h1>
+        <p>Join hackathons, workshops, showcases and club meetups. Every event is a chance to learn, build, and connect.</p>
+      </div>
+    </div>
+
+    <!-- FILTER -->
+    <section class="section-sm section-muted">
+      <div class="container">
+        <div class="filter-tabs" data-filter-group="events" style="justify-content:center;">
+          <button class="filter-btn active" data-filter="all">All Events</button>
+          <button class="filter-btn" data-filter="hackathon">Hackathons</button>
+          <button class="filter-btn" data-filter="workshop">Workshops</button>
+          <button class="filter-btn" data-filter="showcase">Showcases</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- UPCOMING EVENTS -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header" data-reveal>
+          <div class="eyebrow">Upcoming</div>
+          <h2 class="display-lg">Don't miss these</h2>
+        </div>
+
+        <div class="grid grid-3">
+
+          <div class="card event-card" data-filter-target="events" data-category="showcase" data-reveal data-delay="0">
+            <div class="event-img-wrap">
+              <img src="img/innovationday.jpg" alt="Innovation Day 2025" />
+            </div>
+            <div class="event-body">
+              <div class="event-type-row">
+                <span class="event-type-badge event-type-showcase">Showcase</span>
+                <div class="event-status-open">Open</div>
+              </div>
+              <div class="event-title">Innovation Day 2026</div>
+              <div class="event-meta">
+                <div class="event-meta-item">
+                  <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                  Upcoming
+                </div>
+                <div class="event-meta-item">
+                  <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  Venue to be communicated
+                </div>
+                <div class="event-meta-item">
+                  <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  Full Day · 8:00 AM – 6:00 PM
+                </div>
+              </div>
+              <p class="event-desc">Our flagship annual event featuring pitch competitions, project exhibitions, and networking. Showcase your work, meet industry mentors, and celebrate student innovation.</p>
+              <div class="event-footer">
+                <span class="badge badge-indigo">Registration Opening soon</span>
+                <a href="https://forms.gle/xQQoFuVqehVswU1s7" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Register Now</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 
+          <div class="card event-card" data-filter-target="events" data-category="hackathon" data-reveal data-delay="80">
+            <div class="event-img-wrap">
+              <div class="event-img-placeholder" style="background:linear-gradient(135deg,#E53935,#FF7043);">
+                <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              </div>
+            </div>
+            <div class="event-body">
+              <div class="event-type-row">
+                <span class="event-type-badge event-type-hackathon">Hackathon</span>
+                <div class="event-status-open">Open</div>
+              </div>
+              <div class="event-title">AI in Healthcare Hackathon</div>
+              <div class="event-meta">
+                <div class="event-meta-item">
+                  <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                  August 14 – 16, 2025
+                </div>
+                <div class="event-meta-item">
+                  <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  Zetech Innovation Lab
+                </div>
+                <div class="event-meta-item">
+                  <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  48 hours
+                </div>
+              </div>
+              <p class="event-desc">48-hour intensive challenge to develop AI-powered solutions for healthcare delivery in underserved communities across Kenya and East Africa.</p>
+              <div class="event-footer">
+                <span class="badge badge-blue">Teams of 3–5</span>
+                <a href="join.html" class="btn btn-primary btn-sm">Register Interest</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="card event-card" data-filter-target="events" data-category="workshop" data-reveal data-delay="160">
+            <div class="event-img-wrap">
+              <div class="event-img-placeholder" style="background:linear-gradient(135deg,#5C6BC0,#42A5F5);">
+                <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              </div>
+            </div>
+            <div class="event-body">
+              <div class="event-type-row">
+                <span class="event-type-badge event-type-workshop">Workshop</span>
+                <div class="event-status-open">Open</div>
+              </div>
+              <div class="event-title">Blockchain & Web3 Series</div>
+              <div class="event-meta">
+                <div class="event-meta-item">
+                  <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                  September 6, 2025
+                </div>
+                <div class="event-meta-item">
+                  <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  Computer Lab 3
+                </div>
+                <div class="event-meta-item">
+                  <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  3 hours · 10:00 AM
+                </div>
+              </div>
+              <p class="event-desc">Hands-on introduction to blockchain technology and smart contracts. Build your first decentralized app using Solidity and deploy on a test network.</p>
+              <div class="event-footer">
+                <span class="badge badge-indigo">Beginner Friendly</span>
+                <a href="join.html" class="btn btn-primary btn-sm">Register Interest</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="card event-card" data-filter-target="events" data-category="workshop" data-reveal data-delay="0">
+            <div class="event-img-wrap">
+              <div class="event-img-placeholder" style="background:linear-gradient(135deg,#43A047,#00BCD4);">
+                <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+              </div>
+            </div>
+            <div class="event-body">
+              <div class="event-type-row">
+                <span class="event-type-badge event-type-workshop">Workshop</span>
+              </div>
+              <div class="event-title">Research Methods Bootcamp</div>
+              <div class="event-meta">
+                <div class="event-meta-item">
+                  <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                  October 11, 2025
+                </div>
+                <div class="event-meta-item">
+                  <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  ZURI Club Room
+                </div>
+                <div class="event-meta-item">
+                  <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  4 hours · 9:00 AM
+                </div>
+              </div>
+              <p class="event-desc">Learn practical research skills - literature reviews, methodology design, data collection, and academic writing. Ideal for students starting their first research project.</p>
+              <div class="event-footer">
+                <span class="badge badge-green">Free for Members</span>
+                <a href="join.html" class="btn btn-outline btn-sm">Register Interest</a>
+              </div>
+            </div>
+          </div>
+          -->
+        </div>
+      
+      </div>
+    </section>
+
+    <!-- PAST EVENTS -->
+    <section class="section section-muted">
+      <div class="container">
+        <div class="section-header" data-reveal>
+          <div class="eyebrow">Past Events</div>
+          <h2 class="display-lg">What we've built together</h2>
+        </div>
+        <div class="card" style="padding:36px;" data-reveal>
+          <div style="display:flex; flex-direction:column; gap:28px;">
+
+            <div class="past-event-card">
+              <div class="past-event-date-box">
+                <div class="month">Jul</div>
+                <div class="day">25</div>
+                <div style="font-size:0.65rem; color:var(--slate-500);">2024</div>
+              </div>
+              <div class="past-event-content">
+                <h4>Innovation Day 2024</h4>
+                <p>Annual showcase at Ruiru Campus featuring 20+ project exhibitions, pitch competitions, and keynote sessions. 200+ attendees joined from across Nairobi.</p>
+                <div style="margin-top:8px;"><span class="badge badge-blue">Showcase</span></div>
+              </div>
+            </div>
+
+            <hr class="divider" style="margin:0;" />
+
+            <div class="past-event-card">
+              <div class="past-event-date-box">
+                <div class="month">Mar</div>
+                <div class="day">10</div>
+                <div style="font-size:0.65rem; color:var(--slate-500);">2024</div>
+              </div>
+              <div class="past-event-content">
+                <h4>Hackathon</h4>
+                <p></p>
+                <div style="margin-top:8px;"><span class="badge badge-green">Hackathon</span></div>
+              </div>
+            </div>
+
+            <hr class="divider" style="margin:0;" />
+
+            <div class="past-event-card">
+              <div class="past-event-date-box">
+                <div class="month">Nov</div>
+                <div class="day">18</div>
+                <div style="font-size:0.65rem; color:var(--slate-500);">2023</div>
+              </div>
+              <div class="past-event-content">
+                <h4>Python for Data Science Workshop</h4>
+                <p>Hands-on 4-hour workshop introducing data science tools - pandas, matplotlib, and Jupyter. 28 students attended with a 94% satisfaction rating.</p>
+                <div style="margin-top:8px;"><span class="badge badge-blue">Workshop</span></div>
+              </div>
+            </div>
+
+            <hr class="divider" style="margin:0;" />
+
+            <div class="past-event-card">
+              <div class="past-event-date-box">
+                <div class="month">Sep</div>
+                <div class="day">05</div>
+                <div style="font-size:0.65rem; color:var(--slate-500);">2023</div>
+              </div>
+              <div class="past-event-content">
+                <h4>ZURI Club Launch & Orientation</h4>
+                <p>Official club orientation welcoming new members for the 2023 academic year. 60+ students signed up and were assigned to focus area teams.</p>
+                <div style="margin-top:8px;"><span class="badge badge-indigo">Orientation</span></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="container">
+        <div data-reveal>
+          <h2 class="display-lg">Never miss an event</h2>
+          <p class="body-lg">Join ZURI to get early access to event registrations and exclusive member-only workshops.</p>
+          <div class="cta-actions">
+            <a href="join.html" class="btn btn-white btn-lg">Become a Member</a>
+            <a href="contact.html" class="btn btn-outline-white btn-lg">Partner With Us</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo" style="margin-bottom:16px;">
+            <img src="img/zuri_logo.png" alt="ZURI Logo" style="width:40px;height:40px;" />
+            <div>
+              <span class="nav-logo-text">ZURI</span>
+              <span class="nav-logo-sub">Innovation Club</span>
+            </div>
+          </a>
+          <p class="footer-desc">Zetech University Research and Innovation Club - empowering students to innovate, collaborate, and transform ideas into impactful solutions.</p>
+          <p class="footer-tagline">"Innovate. Collaborate. Transform."</p>
+          <div class="footer-socials">
+            <a href="#" class="social-btn" aria-label="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="#" class="social-btn" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="#" class="social-btn" aria-label="Instagram">
+              <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="programs.html">Programs</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="join.html">Join ZURI</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <div class="footer-contact">
+            <div class="footer-contact-item">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              zuri@zetech.ac.ke
+            </div>
+            <div class="footer-contact-item">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Zetech University, Ruiru, Kenya
+            </div>
+            <div class="footer-contact-item">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Mon – Fri: 8:00 AM – 5:00 PM
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 ZURI - Zetech University Research and Innovation Club.</p>
+        <p>Built with ♥ by <a href="about.html">ZURI members</a></p>
+      </div>
+    </div>
+  </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

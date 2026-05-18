@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ZURI Programs - research projects, hackathons, workshops, and community outreach at Zetech University." />
+  <title>Programs - ZURI Innovation Club</title>
+  <link rel="icon" href="img/zuri_logo.png" type="image/png" />
+  <link rel="stylesheet" href="css/main.css" />
+  <style>
+    .focus-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .focus-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+    }
+
+    .focus-health::before { background: linear-gradient(90deg, #E53935, #FF7043); }
+    .focus-sustain::before { background: linear-gradient(90deg, #43A047, #00BCD4); }
+    .focus-ai::before { background: linear-gradient(90deg, #5C6BC0, #42A5F5); }
+    .focus-social::before { background: linear-gradient(90deg, #FB8C00, #FFD600); }
+
+    .focus-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .focus-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .focus-icon svg {
+      width: 22px;
+      height: 22px;
+      fill: none;
+      stroke: white;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .focus-icon-health { background: linear-gradient(135deg, #E53935, #FF7043); }
+    .focus-icon-sustain { background: linear-gradient(135deg, #43A047, #00BCD4); }
+    .focus-icon-ai { background: linear-gradient(135deg, #5C6BC0, #42A5F5); }
+    .focus-icon-social { background: linear-gradient(135deg, #FB8C00, #FFD600); }
+
+    .active-projects-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--slate-500);
+      margin-bottom: 10px;
+    }
+
+    .program-detail-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.875rem;
+    }
+
+    .program-detail-row:last-child { border-bottom: none; }
+
+    .detail-key { color: var(--slate-500); }
+    .detail-val { font-weight: 500; color: var(--slate-900); }
+
+    .features-list {
+      margin-top: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.875rem;
+      color: var(--slate-500);
+    }
+
+    .feature-item::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--indigo-600);
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+    <nav class="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+          <img src="img/zuri_logo.png" alt="ZURI Logo" />
+          <div>
+            <span class="nav-logo-text">Zetech University</span>
+            <span class="nav-logo-sub">Research & Innovation Club</span>
+          </div>
+        </a>
+        <div class="nav-links">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="programs.html" class="nav-link">Programs</a>
+          <a href="projects.html" class="nav-link">Projects</a>
+          <a href="events.html" class="nav-link">Events</a>
+          <a href="resources.html" class="nav-link">Resources</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+        <div class="nav-actions">
+          <a href="join.html" class="btn btn-primary">Join ZURI</a>
+          <button class="hamburger" aria-label="Open menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="mobile-nav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="programs.html">Programs</a>
+      <a href="projects.html">Projects</a>
+      <a href="events.html">Events</a>
+      <a href="resources.html">Resources</a>
+      <a href="contact.html">Contact</a>
+      <a href="join.html">Join ZURI</a>
+    </div>
+  </nav>
+
+
+  <main>
+
+    <div class="page-hero">
+      <div class="page-hero-orb" style="width:400px;height:400px;background:rgba(99,102,241,0.2);top:-100px;right:-50px;"></div>
+      <div class="page-hero-orb" style="width:280px;height:280px;background:rgba(124,58,237,0.15);bottom:-80px;left:-40px;"></div>
+      <div class="container">
+        <div class="eyebrow">Programs & Focus Areas</div>
+        <h1 class="display-xl" style="color:var(--white);">Where <span class="gradient-text">ideas</span> become solutions</h1>
+        <p>Discover the diverse range of programs and innovation areas where ZURI members are making a real-world impact.</p>
+      </div>
+    </div>
+
+    <!-- FOCUS AREAS -->
+    <section class="section section-muted">
+      <div class="container">
+        <div class="section-header center" data-reveal>
+          <div class="eyebrow">Innovation Focus Areas</div>
+          <h2 class="display-lg">Four domains, one mission</h2>
+          <p>ZURI members work across these core areas to build technology that matters.</p>
+        </div>
+        <div class="grid grid-2">
+          <div class="card focus-card focus-health" data-reveal data-delay="0">
+            <div class="focus-header">
+              <div class="focus-icon focus-icon-health">
+                <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              </div>
+              <div>
+                <h3>Health Tech Innovation</h3>
+                <p class="body-sm text-muted">Developing technology solutions for healthcare challenges across Africa</p>
+              </div>
+            </div>
+            <div class="active-projects-label"></div>
+            <div class="flex flex-wrap gap-8">
+              <span class="tag"></span>
+              <span class="tag"></span>
+              <span class="tag"></span>
+            </div>
+          </div>
+
+          <div class="card focus-card focus-sustain" data-reveal data-delay="80">
+            <div class="focus-header">
+              <div class="focus-icon focus-icon-sustain">
+                <svg viewBox="0 0 24 24"><path d="M2 12a10 10 0 1 0 20 0 10 10 0 0 0-20 0"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+              </div>
+              <div>
+                <h3>Sustainable Technology</h3>
+                <p class="body-sm text-muted">Creating environmentally conscious solutions for climate challenges</p>
+              </div>
+            </div>
+            <div class="active-projects-label"></div>
+            <div class="flex flex-wrap gap-8">
+              <span class="tag"></span>
+              <span class="tag"></span>
+              <span class="tag"></span>
+            </div>
+          </div>
+
+          <div class="card focus-card focus-ai" data-reveal data-delay="0">
+            <div class="focus-header">
+              <div class="focus-icon focus-icon-ai">
+                <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              </div>
+              <div>
+                <h3>AI & Data Science</h3>
+                <p class="body-sm text-muted">Leveraging artificial intelligence to solve complex problems</p>
+              </div>
+            </div>
+            <div class="active-projects-label"></div>
+            <div class="flex flex-wrap gap-8">
+              <span class="tag"></span>
+              <span class="tag"></span>
+              <span class="tag"></span>
+            </div>
+          </div>
+
+          <div class="card focus-card focus-social" data-reveal data-delay="80">
+            <div class="focus-header">
+              <div class="focus-icon focus-icon-social">
+                <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <div>
+                <h3>Social Innovation</h3>
+                <p class="body-sm text-muted">Building solutions that address community and social challenges</p>
+              </div>
+            </div>
+            <div class="active-projects-label"></div>
+            <div class="flex flex-wrap gap-8">
+              <span class="tag"></span>
+              <span class="tag"></span>
+              <span class="tag"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROGRAM TYPES -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header center" data-reveal>
+          <div class="eyebrow">Our Programs</div>
+          <h2 class="display-lg">How we structure our work</h2>
+        </div>
+        <div class="grid grid-2">
+          <div class="card" data-reveal data-delay="0">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24"><path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z"/><path d="M20.5 10H19V8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/><path d="M9.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5S8 21.33 8 20.5v-5c0-.83.67-1.5 1.5-1.5z"/><path d="M3.5 14H5v1.5c0 .83-.67 1.5-1.5 1.5S2 16.33 2 15.5 2.67 14 3.5 14z"/><path d="M14 14.5c0-.83.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-5c-.83 0-1.5-.67-1.5-1.5z"/><path d="M15.5 19H14v1.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5-.67-1.5-1.5-1.5z"/><path d="M10 9.5C10 8.67 9.33 8 8.5 8h-5C2.67 8 2 8.67 2 9.5S2.67 11 3.5 11h5c.83 0 1.5-.67 1.5-1.5z"/><path d="M8.5 5H10V3.5C10 2.67 9.33 2 8.5 2S7 2.67 7 3.5 7.67 5 8.5 5z"/></svg>
+            </div>
+            <h3>Research Projects</h3>
+            <p class="text-muted body-sm">Long-term research initiatives tackling real-world problems</p>
+            <div style="margin-top:16px;">
+              <div class="program-detail-row"><span class="detail-key">Duration</span><span class="detail-val">2 – 3 months</span></div>
+              <div class="program-detail-row"><span class="detail-key">Team Size</span><span class="detail-val">5 – 8 members</span></div>
+            </div>
+            <div class="features-list">
+              <div class="feature-item">Faculty mentorship</div>
+              <div class="feature-item">Industry partnerships</div>
+              <div class="feature-item">Publication opportunities</div>
+              <div class="feature-item">Conference presentations</div>
+            </div>
+          </div>
+
+          <div class="card" data-reveal data-delay="80">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </div>
+            <h3>Hackathons & Challenges</h3>
+            <p class="text-muted body-sm">Intensive problem-solving events and competitions</p>
+            <div style="margin-top:16px;">
+              <div class="program-detail-row"><span class="detail-key">Duration</span><span class="detail-val">24 – 72 hours</span></div>
+              <div class="program-detail-row"><span class="detail-key">Team Size</span><span class="detail-val">3 – 5 members</span></div>
+            </div>
+            <div class="features-list">
+              <div class="feature-item">Prize competitions</div>
+              <div class="feature-item">Industry challenges</div>
+              <div class="feature-item">Rapid prototyping</div>
+              <div class="feature-item">Networking opportunities</div>
+            </div>
+          </div>
+
+          <div class="card" data-reveal data-delay="0">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            </div>
+            <h3>Workshops & Training</h3>
+            <p class="text-muted body-sm">Skill development sessions and technical training</p>
+            <div style="margin-top:16px;">
+              <div class="program-detail-row"><span class="detail-key">Duration</span><span class="detail-val">2 – 4 hrs per session</span></div>
+              <div class="program-detail-row"><span class="detail-key">Participants</span><span class="detail-val">20 – 30 per session</span></div>
+            </div>
+            <div class="features-list">
+              <div class="feature-item">Expert instructors</div>
+              <div class="feature-item">Hands-on learning</div>
+              <div class="feature-item">Certification</div>
+              <div class="feature-item">Peer learning</div>
+            </div>
+          </div>
+
+          <div class="card" data-reveal data-delay="80">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+            <h3>Community Outreach</h3>
+            <p class="text-muted body-sm">Programs that give back to the local community</p>
+            <div style="margin-top:16px;">
+              <div class="program-detail-row"><span class="detail-key">Duration</span><span class="detail-val">Ongoing</span></div>
+              <div class="program-detail-row"><span class="detail-key">Participants</span><span class="detail-val">All members welcome</span></div>
+            </div>
+            <div class="features-list">
+              <div class="feature-item">Tech education for youth</div>
+              <div class="feature-item">Community problem-solving</div>
+              <div class="feature-item">Service learning</div>
+              <div class="feature-item">Impact measurement</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- UPCOMING EVENTS -->
+    <section class="section section-muted">
+      <div class="container">
+        <div class="section-header center" data-reveal>
+          <div class="eyebrow">Upcoming Events</div>
+          <h2 class="display-lg">Join our next program</h2>
+        </div>
+        <div class="grid grid-3">
+          <div class="card" data-reveal data-delay="0">
+            <div class="event-type-badge event-type-hackathon">Hackathon</div>
+            <h3>Hackathon</h3>
+            <div class="event-meta-row">
+              <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              _
+            </div>
+            <div class="event-meta-row">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Technology Park Zetech Mangu Campus
+            </div>
+            <p class="body-sm text-muted" style="margin-top:12px;"></p>
+            <div style="margin-top:20px;">
+              <a href="join.html" class="btn btn-outline btn-sm">Register Interest</a>
+            </div>
+          </div>
+
+          <div class="card" data-reveal data-delay="80">
+            <div class="event-type-badge event-type-workshop">Workshop</div>
+            <h3>Artificial Inteligence Workshop Series</h3>
+            <div class="event-meta-row">
+              <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              June 19, 2026
+            </div>
+            <div class="event-meta-row">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Ruiru Campus
+            </div>
+            <p class="body-sm text-muted" style="margin-top:12px;"></p>
+            <div style="margin-top:20px;">
+              <a href="join.html" class="btn btn-outline btn-sm">Register Interest</a>
+            </div>
+          </div>
+
+          <div class="card" data-reveal data-delay="160">
+            <div class="event-type-badge event-type-showcase">Showcase</div>
+            <h3>Innovation Day 2026</h3>
+            <div class="event-meta-row">
+              <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              July, 2026
+            </div>
+            <div class="event-meta-row">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Auditorium, Ruiru Campus
+            </div>
+            <p class="body-sm text-muted" style="margin-top:12px;">Our flagship annual event pitch competitions, project exhibitions, and networking with industry partners.</p>
+            <div style="margin-top:20px;">
+              <a href="https://forms.gle/xQQoFuVqehVswU1s7" target="_blank" class="btn btn-primary btn-sm">Register Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="container">
+        <div data-reveal>
+          <h2 class="display-lg">Ready to get involved?</h2>
+          <p class="body-lg">Join ZURI and plug into a program that challenges you to grow.</p>
+          <div class="cta-actions">
+            <a href="join.html" class="btn btn-white btn-lg">Join Now</a>
+            <a href="events.html" class="btn btn-outline-white btn-lg">See All Events</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo" style="margin-bottom:16px;">
+            <img src="img/zuri_logo.png" alt="ZURI Logo" style="width:40px;height:40px;" />
+            <div>
+              <span class="nav-logo-text">ZURI</span>
+              <span class="nav-logo-sub">Innovation Club</span>
+            </div>
+          </a>
+          <p class="footer-desc">Zetech University Research and Innovation Club - empowering students to innovate, collaborate, and transform ideas into impactful solutions.</p>
+          <p class="footer-tagline">"Innovate. Collaborate. Transform."</p>
+          <div class="footer-socials">
+            <a href="#" class="social-btn" aria-label="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="#" class="social-btn" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="#" class="social-btn" aria-label="Instagram">
+              <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="programs.html">Programs</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="join.html">Join ZURI</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <div class="footer-contact">
+            <div class="footer-contact-item">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              zuri@zetech.ac.ke
+            </div>
+            <div class="footer-contact-item">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Zetech University, Ruiru, Kenya
+            </div>
+            <div class="footer-contact-item">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Mon – Fri: 8:00 AM – 5:00 PM
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 ZURI - Zetech University Research and Innovation Club.</p>
+        <p>Built with ♥ by <a href="about.html">ZURI members</a></p>
+      </div>
+    </div>
+  </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

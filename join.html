@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Join ZURI — become a member of Zetech University's Research and Innovation Club." />
+  <title>Join ZURI - Zetech University Research & Innovation Club</title>
+  <link rel="icon" href="img/zuri_logo.png" type="image/png" />
+  <link rel="stylesheet" href="css/main.css" />
+  <style>
+    .join-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    @media (max-width: 960px) {
+      .join-layout { grid-template-columns: 1fr; gap: 40px; }
+    }
+
+    .benefit-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .benefit-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .benefit-check {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--grad-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .benefit-check svg {
+      width: 13px;
+      height: 13px;
+      stroke: white;
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .benefit-text h4 {
+      font-family: var(--font-display);
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--slate-900);
+      margin-bottom: 3px;
+    }
+
+    .benefit-text p {
+      font-size: 0.875rem;
+      color: var(--slate-500);
+      line-height: 1.55;
+    }
+
+    .form-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 44px;
+      box-shadow: var(--shadow-md);
+    }
+
+    @media (max-width: 480px) {
+      .form-card { padding: 24px; }
+    }
+
+    .form-card-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--slate-900);
+      margin-bottom: 4px;
+    }
+
+    .form-card-sub {
+      font-size: 0.9rem;
+      color: var(--slate-500);
+      margin-bottom: 32px;
+    }
+
+    .step-indicator {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 32px;
+    }
+
+    .step-dot {
+      height: 4px;
+      flex: 1;
+      border-radius: 100px;
+      background: var(--border);
+      transition: background 0.3s;
+    }
+
+    .step-dot.active { background: var(--indigo-600); }
+    .step-dot.done { background: #4CAF50; }
+
+    .form-step { display: none; }
+    .form-step.active { display: block; }
+
+    .step-nav {
+      display: flex;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .step-nav .btn { flex: 1; justify-content: center; }
+
+    .focus-option {
+      position: relative;
+    }
+
+    .focus-option input[type="checkbox"] {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .focus-option label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      border: 1.5px solid var(--border-strong);
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: var(--transition);
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--slate-900);
+      user-select: none;
+    }
+
+    .focus-option label .focus-dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      border: 2px solid var(--border-strong);
+      transition: var(--transition);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .focus-option label .focus-dot svg {
+      width: 11px;
+      height: 11px;
+      stroke: white;
+      fill: none;
+      stroke-width: 3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .focus-option input:checked + label {
+      border-color: var(--indigo-600);
+      background: rgba(99,102,241,0.07);
+      color: var(--indigo-600);
+    }
+
+    .focus-option input:checked + label .focus-dot {
+      background: var(--indigo-600);
+      border-color: var(--indigo-600);
+    }
+
+    .focus-option input:checked + label .focus-dot svg {
+      opacity: 1;
+    }
+
+    .focus-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    @media (max-width: 480px) {
+      .focus-grid { grid-template-columns: 1fr; }
+    }
+
+    .success-state {
+      display: none;
+      text-align: center;
+      padding: 32px 0;
+    }
+
+    .success-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #43A047, #66BB6A);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+
+    .success-icon svg {
+      width: 36px;
+      height: 36px;
+      stroke: white;
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .members-preview {
+      display: flex;
+      margin-top: 24px;
+    }
+
+    .member-avatar-sm {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 2px solid var(--white);
+      object-fit: cover;
+      margin-left: -10px;
+    }
+
+    .member-avatar-sm:first-child { margin-left: 0; }
+
+    .members-count-badge {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--grad-primary);
+      border: 2px solid var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: white;
+      margin-left: -10px;
+    }
+
+    .members-label {
+      margin-left: 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .members-label strong {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--slate-900);
+    }
+
+    .members-label span {
+      font-size: 0.75rem;
+      color: var(--slate-500);
+    }
+
+    .testimonial-card {
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin-top: 32px;
+      border-left: 3px solid var(--indigo-600);
+    }
+
+    .testimonial-text {
+      font-size: 0.9375rem;
+      color: var(--slate-900);
+      line-height: 1.7;
+      font-style: italic;
+      margin-bottom: 16px;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .testimonial-author img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .testimonial-author-name {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--slate-900);
+    }
+
+    .testimonial-author-title {
+      font-size: 0.8rem;
+      color: var(--slate-500);
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+          <img src="img/zuri_logo.png" alt="ZURI Logo" />
+          <div>
+            <span class="nav-logo-text">Zetech University</span>
+            <span class="nav-logo-sub">Research & Innovation Club</span>
+          </div>
+        </a>
+        <div class="nav-links">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="programs.html" class="nav-link">Programs</a>
+          <a href="projects.html" class="nav-link">Projects</a>
+          <a href="events.html" class="nav-link">Events</a>
+          <a href="resources.html" class="nav-link">Resources</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+        <div class="nav-actions">
+          <a href="join.html" class="btn btn-primary">Join ZURI</a>
+          <button class="hamburger" aria-label="Open menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="mobile-nav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="programs.html">Programs</a>
+      <a href="projects.html">Projects</a>
+      <a href="events.html">Events</a>
+      <a href="resources.html">Resources</a>
+      <a href="contact.html">Contact</a>
+      <a href="join.html">Join ZURI</a>
+    </div>
+  </nav>
+
+  <main>
+
+    <div class="page-hero">
+      <div class="page-hero-orb" style="width:400px;height:400px;background:rgba(99,102,241,0.2);top:-100px;right:-50px;"></div>
+      <div class="page-hero-orb" style="width:280px;height:280px;background:rgba(124,58,237,0.15);bottom:-80px;left:-40px;"></div>
+      <div class="container">
+        <div class="eyebrow">Membership</div>
+        <h1 class="display-xl" style="color:var(--white);">Join the <span class="gradient-text">ZURI</span> community</h1>
+        <p>100+ students already building the future. Your seat at the table is waiting.</p>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container">
+        <div class="join-layout">
+
+          <!-- LEFT: Benefits & Social Proof -->
+          <div data-reveal>
+            <h2 class="display-md" style="margin-bottom:6px;">Why join ZURI?</h2>
+            <p class="body-sm text-muted">Here's what you get as a member.</p>
+
+            <div class="benefit-list">
+              <div class="benefit-item">
+                <div class="benefit-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+                <div class="benefit-text">
+                  <h4>Real project experience</h4>
+                  <p>Work on live projects with real users. Build your portfolio with things that actually matter.</p>
+                </div>
+              </div>
+              <div class="benefit-item">
+                <div class="benefit-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+                <div class="benefit-text">
+                  <h4>Faculty & industry mentorship</h4>
+                  <p>Get guided by lecturers and industry professionals who've built and shipped real products.</p>
+                </div>
+              </div>
+              <div class="benefit-item">
+                <div class="benefit-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+                <div class="benefit-text">
+                  <h4>Hackathons & competitions</h4>
+                  <p>Represent Zetech at national and regional competitions. Win prizes, recognition, and job opportunities.</p>
+                </div>
+              </div>
+              <div class="benefit-item">
+                <div class="benefit-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+                <div class="benefit-text">
+                  <h4>A network that lasts beyond campus</h4>
+                  <p>Connect with alumni, industry partners, and fellow innovators across East Africa.</p>
+                </div>
+              </div>
+              <div class="benefit-item">
+                <div class="benefit-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+                <div class="benefit-text">
+                  <h4>Access to tools & resources</h4>
+                  <p>Templates, software licenses, cloud credits, and a curated library of learning materials - all free for members.</p>
+                </div>
+              </div>
+              <div class="benefit-item">
+                <div class="benefit-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+                <div class="benefit-text">
+                  <h4>Leadership opportunities</h4>
+                  <p>Lead project teams, run workshops, and grow into a club leadership role - building skills that go beyond the classroom.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Members Preview -->
+            <div style="margin-top:36px; padding:20px; background:var(--surface); border-radius:var(--radius-lg); border:1px solid var(--border);">
+              <p class="label text-muted" style="margin-bottom:12px;">Already a part of ZURI</p>
+              <div class="members-preview">
+                <img class="member-avatar-sm" src="img/moses.jpg" alt="Member" />
+                <img class="member-avatar-sm" src="img/soita.jpg" alt="Member" />
+                <img class="member-avatar-sm" src="img/beth.PNG" alt="Member" />
+                <img class="member-avatar-sm" src="img/ivy.jpg" alt="Member" />
+                <img class="member-avatar-sm" src="img/okelloelly.jpg" alt="Member" />
+                <div class="members-count-badge">95+</div>
+                <div class="members-label">
+                  <strong>100+ active members</strong>
+                  <span>across all departments</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Testimonial -->
+            <div class="testimonial-card">
+              <p class="testimonial-text">"Joining ZURI changed my trajectory. I went from building personal projects to leading a team that built a real product used by 100+ people - all within one year."</p>
+              <div class="testimonial-author">
+                <img src="img/bett.jpg" alt="Emmanuel Bett" />
+                <div>
+                  <div class="testimonial-author-name">Emmanuel Bett</div>
+                  <div class="testimonial-author-title">Membership Chair, ZURI</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT: Multi-step Application Form -->
+          <div data-reveal data-delay="120">
+            <div class="form-card">
+
+              <!-- Step Indicator -->
+              <div class="step-indicator">
+                <div class="step-dot active" id="dot-1"></div>
+                <div class="step-dot" id="dot-2"></div>
+                <div class="step-dot" id="dot-3"></div>
+              </div>
+
+              <div class="form-card-title">Membership Application</div>
+              <p class="form-card-sub">Takes about 2 minutes. We review all applications and reach out within 3 business days.</p>
+
+              <!-- Step 1: Personal Info -->
+              <div class="form-step active" id="step1">
+                <p class="label text-muted" style="margin-bottom:20px;">Step 1 of 3 - Personal Information</p>
+
+                <div class="form-grid-2">
+                  <div class="form-group">
+                    <label class="form-label" for="joinFirstName">First Name *</label>
+                    <input class="form-input" id="joinFirstName" type="text" placeholder="John" />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="joinLastName">Last Name *</label>
+                    <input class="form-input" id="joinLastName" type="text" placeholder="Doe" />
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="joinEmail">Email Address *</label>
+                  <input class="form-input" id="joinEmail" type="email" placeholder="john@zetech.ac.ke" />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="joinPhone">Phone Number</label>
+                  <input class="form-input" id="joinPhone" type="tel" placeholder="+254 700 000 000" />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="joinYear">Year of Study *</label>
+                  <select class="form-select" id="joinYear">
+                    <option value="" disabled selected>Select year…</option>
+                    <option>Year 1</option>
+                    <option>Year 2</option>
+                    <option>Year 3</option>
+                    <option>Year 4</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="joinCourse">Course / Programme *</label>
+                  <input class="form-input" id="joinCourse" type="text" placeholder="e.g. BSc Software Engineering" />
+                </div>
+
+                <div class="step-nav">
+                  <button type="button" class="btn btn-primary" onclick="nextStep(1)">
+                    Continue
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Step 2: Focus & Skills -->
+              <div class="form-step" id="step2">
+                <p class="label text-muted" style="margin-bottom:20px;">Step 2 of 3 - Interests & Skills</p>
+
+                <div class="form-group">
+                  <label class="form-label" style="margin-bottom:12px;">Innovation Focus Areas (select all that apply) *</label>
+                  <div class="focus-grid">
+                    <div class="focus-option">
+                      <input type="checkbox" id="focus-health" name="focus" value="health-tech" />
+                      <label for="focus-health">
+                        <span class="focus-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                        Health Tech
+                      </label>
+                    </div>
+                    <div class="focus-option">
+                      <input type="checkbox" id="focus-ai" name="focus" value="ai-data" />
+                      <label for="focus-ai">
+                        <span class="focus-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                        AI & Data Science
+                      </label>
+                    </div>
+                    <div class="focus-option">
+                      <input type="checkbox" id="focus-sustain" name="focus" value="sustainable" />
+                      <label for="focus-sustain">
+                        <span class="focus-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                        Sustainable Tech
+                      </label>
+                    </div>
+                    <div class="focus-option">
+                      <input type="checkbox" id="focus-social" name="focus" value="social" />
+                      <label for="focus-social">
+                        <span class="focus-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                        Social Innovation
+                      </label>
+                    </div>
+                    <div class="focus-option">
+                      <input type="checkbox" id="focus-web" name="focus" value="web-dev" />
+                      <label for="focus-web">
+                        <span class="focus-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                        Web Development
+                      </label>
+                    </div>
+                    <div class="focus-option">
+                      <input type="checkbox" id="focus-research" name="focus" value="research" />
+                      <label for="focus-research">
+                        <span class="focus-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                        Research
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group" style="margin-top:20px;">
+                  <label class="form-label" for="joinSkills">Key Skills</label>
+                  <input class="form-input" id="joinSkills" type="text" placeholder="e.g. Python, UI Design, Research Writing…" />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="joinExperience">Experience Level *</label>
+                  <select class="form-select" id="joinExperience">
+                    <option value="" disabled selected>Select your level…</option>
+                    <option>Beginner - just getting started</option>
+                    <option>Intermediate - some project experience</option>
+                    <option>Advanced - built and shipped projects</option>
+                  </select>
+                </div>
+
+                <div class="step-nav">
+                  <button type="button" class="btn btn-ghost" onclick="prevStep(2)">Back</button>
+                  <button type="button" class="btn btn-primary" onclick="nextStep(2)">
+                    Continue
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Step 3: Motivation -->
+              <div class="form-step" id="step3">
+                <p class="label text-muted" style="margin-bottom:20px;">Step 3 of 3 - Your Motivation</p>
+
+                <div class="form-group">
+                  <label class="form-label" for="joinWhy">Why do you want to join ZURI? (optional)</label>
+                  <textarea class="form-textarea" id="joinWhy" placeholder="Tell us what excites you about ZURI and what you hope to achieve as a member…" style="min-height:120px;"></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="joinProject">Do you have a project idea? (optional)</label>
+                  <textarea class="form-textarea" id="joinProject" placeholder="Describe a problem you'd like to solve or a project you'd like to build…" style="min-height:90px;"></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="joinHeard">How did you hear about ZURI?</label>
+                  <select class="form-select" id="joinHeard">
+                    <option value="" disabled selected>Select…</option>
+                    <option>Current or former member</option>
+                    <option>Social media</option>
+                    <option>Campus poster / flyer</option>
+                    <option>Lecturer / staff</option>
+                    <option>ZURI website</option>
+                    <option>Event / hackathon</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+
+                <div style="background:var(--surface); border-radius:var(--radius); padding:16px; margin-bottom:20px; font-size:0.875rem; color:var(--slate-500); line-height:1.6;">
+                  By submitting this application you agree to ZURI's membership terms. Applications are reviewed within 3 business days. You'll receive a confirmation email once accepted.
+                </div>
+
+                <div class="step-nav">
+                  <button type="button" class="btn btn-ghost" onclick="prevStep(3)">Back</button>
+                  <button type="button" class="btn btn-primary" id="submitBtn" onclick="submitApplication()">
+                    Submit Application
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Success State -->
+              <div class="success-state" id="successState">
+                <div class="success-icon">
+                  <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <h3 class="display-md" style="margin-bottom:8px;">Application Submitted!</h3>
+                <p class="body-sm text-muted" style="margin-bottom:24px;">Thank you for applying to ZURI. We'll review your application and reach out within 3 business days via email.</p>
+                <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+                  <a href="index.html" class="btn btn-outline btn-sm">Back to Home</a>
+                  <a href="https://chat.whatsapp.com/ZURIGROUP" target="_blank" class="btn btn-primary btn-sm">Join WhatsApp Group</a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- EVENT REGISTRATION -->
+    <section class="section section-muted">
+      <div class="container">
+        <div class="section-header center" data-reveal>
+          <div class="eyebrow">Upcoming</div>
+          <h2 class="display-lg">Register for Innovation Day 2026</h2>
+          <p>Already a member? Submit your project for our flagship showcase event.</p>
+        </div>
+        <div style="text-align:center;" data-reveal>
+          <div class="card" style="max-width:560px; margin:0 auto; padding:36px; text-align:center;">
+            <img src="img/innovationday.jpeg" alt="Innovation Day" style="width:100%; height:180px; object-fit:cover; border-radius:var(--radius); margin-bottom:20px;" />
+            <span class="badge badge-indigo" style="margin-bottom:12px; display:inline-flex;">July 26, 2026 · Ruiru Campus</span>
+            <h3 class="display-md" style="margin-bottom:8px;">Innovation Day 2026</h3>
+            <p class="body-sm text-muted" style="margin-bottom:24px;">Exhibit your project, pitch to judges, and compete for prizes. Open to all ZURI members and Zetech students.</p>
+            <a href="https://forms.gle/xQQoFuVqehVswU1s7" target="_blank" rel="noopener" class="btn btn-primary btn-lg" style="width:100%; justify-content:center;">
+              Register via Google Forms
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo" style="margin-bottom:16px;">
+            <img src="img/zuri_logo.png" alt="ZURI Logo" style="width:40px;height:40px;" />
+            <div>
+              <span class="nav-logo-text">ZURI</span>
+              <span class="nav-logo-sub">Innovation Club</span>
+            </div>
+          </a>
+          <p class="footer-desc">Zetech University Research and Innovation Club — empowering students to innovate, collaborate, and transform ideas into impactful solutions.</p>
+          <p class="footer-tagline">"Innovate. Collaborate. Transform."</p>
+          <div class="footer-socials">
+            <a href="#" class="social-btn" aria-label="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="#" class="social-btn" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="#" class="social-btn" aria-label="Instagram">
+              <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="programs.html">Programs</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="join.html">Join ZURI</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <div class="footer-contact">
+            <div class="footer-contact-item">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              zuri@zetech.ac.ke
+            </div>
+            <div class="footer-contact-item">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Zetech University, Ruiru, Kenya
+            </div>
+            <div class="footer-contact-item">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Mon – Fri: 8:00 AM – 5:00 PM
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 ZURI — Zetech University Research and Innovation Club.</p>
+        <p>Built with ♥ by <a href="about.html">ZURI members</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script>
+    // ─── Google Sheets Web App URL ───────────────────────────────────────────────
+    const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbyM62DX3GxH_n6f_Om7Pj_wkgya1q1BF4lIT2zCGJNvUrh0jZ6UsahMrnriFibMjRk/exec';
+
+    // ─── Step navigation ─────────────────────────────────────────────────────────
+    let currentStep = 1;
+    const totalSteps = 3;
+
+    function updateDots(step) {
+      for (let i = 1; i <= totalSteps; i++) {
+        const dot = document.getElementById(`dot-${i}`);
+        dot.classList.remove('active', 'done');
+        if (i < step) dot.classList.add('done');
+        else if (i === step) dot.classList.add('active');
+      }
+    }
+
+    function nextStep(from) {
+      if (from === 1) {
+        const first  = document.getElementById('joinFirstName').value.trim();
+        const last   = document.getElementById('joinLastName').value.trim();
+        const email  = document.getElementById('joinEmail').value.trim();
+        const year   = document.getElementById('joinYear').value;
+        const course = document.getElementById('joinCourse').value.trim();
+
+        if (!first || !last || !email || !year || !course) {
+          ZURI.toast('Please fill in all required fields.', 'error');
+          return;
+        }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          ZURI.toast('Please enter a valid email address.', 'error');
+          return;
+        }
+      }
+
+      if (from === 2) {
+        const checked = document.querySelectorAll('input[name="focus"]:checked');
+        const exp     = document.getElementById('joinExperience').value;
+        if (!checked.length || !exp) {
+          ZURI.toast('Please select at least one focus area and your experience level.', 'error');
+          return;
+        }
+      }
+
+      document.getElementById(`step${from}`).classList.remove('active');
+      currentStep = from + 1;
+      document.getElementById(`step${currentStep}`).classList.add('active');
+      updateDots(currentStep);
+    }
+
+    function prevStep(from) {
+      document.getElementById(`step${from}`).classList.remove('active');
+      currentStep = from - 1;
+      document.getElementById(`step${currentStep}`).classList.add('active');
+      updateDots(currentStep);
+    }
+
+    // ─── Submit to Google Sheets ──────────────────────────────────────────────────
+    async function submitApplication() {
+      const btn = document.getElementById('submitBtn');
+      btn.textContent = 'Submitting…';
+      btn.disabled = true;
+
+      // Collect checked focus areas into a comma-separated string
+      const focusAreas = [...document.querySelectorAll('input[name="focus"]:checked')]
+        .map(cb => cb.value)
+        .join(', ');
+
+      const payload = {
+        firstName:   document.getElementById('joinFirstName').value.trim(),
+        lastName:    document.getElementById('joinLastName').value.trim(),
+        email:       document.getElementById('joinEmail').value.trim(),
+        phone:       document.getElementById('joinPhone').value.trim(),
+        year:        document.getElementById('joinYear').value,
+        course:      document.getElementById('joinCourse').value.trim(),
+        focusAreas,
+        skills:      document.getElementById('joinSkills').value.trim(),
+        experience:  document.getElementById('joinExperience').value,
+        whyJoin:     document.getElementById('joinWhy').value.trim(),
+        projectIdea: document.getElementById('joinProject').value.trim(),
+        howHeard:    document.getElementById('joinHeard').value,
+      };
+
+      try {
+        // no-cors is required for Google Apps Script — we won't get a JSON response
+        // but the data will still be written to the Sheet successfully.
+        await fetch(SHEETS_URL, {
+          method:  'POST',
+          mode:    'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body:    JSON.stringify(payload),
+        });
+
+        // Show success screen
+        document.getElementById('step3').classList.remove('active');
+        document.querySelectorAll('.step-dot').forEach(d => {
+          d.classList.remove('active');
+          d.classList.add('done');
+        });
+        document.getElementById('successState').style.display = 'block';
+
+      } catch (err) {
+        console.error('Submission error:', err);
+        ZURI.toast('Submission failed. Please check your connection and try again.', 'error');
+        btn.innerHTML = 'Submit Application <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+        btn.disabled = false;
+      }
+    }
+  </script>
+</body>
+</html>
